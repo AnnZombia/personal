@@ -1,4 +1,4 @@
-from flaskext.mysql import MySQL
+import mysql.connector
 from flask import request, Flask
 from flask_restful import Api, Resource, reqparse
 app = Flask(__name__)
@@ -11,12 +11,16 @@ def auth_phone():
         password = "Aksenov/1",
         database = "app"
         )
-    phone = request.args.get('phone')
+    parser = reqparse.RequestParser()
+    parser.add_argument("phone")
+    params = parser.parse_args()
+    phone = int(params["phone"])
     cursor = mydb.cursor()
-    cursor.execute(''' INSERT INTO auth (phone) VALUES (%s) ''', phone)
+    cursor.execute("INSERT INTO auth (phone) VALUES (%s)", (phone, ))
     mydb.commit()
     cursor.close()
     mydb.close()
+    return str(phone)
 
 @app.route('/auth_code', methods=['POST'])
 def auth_code():
@@ -26,13 +30,18 @@ def auth_code():
         password = "Aksenov/1",
         database = "app"
         )
-    code = request.args.get('code')
-    phone = request.args.get('phone')
-    cursor = mysql.connection.cursor()
-    cursor.execute(''' INSERT INTO auth (code) WHERE phone = %s VALUES (%s)''', (phone, code))
-    mysql.connection.commit()
+    parser = reqparse.RequestParser()
+    parser.add_argument("phone")
+    parser.add_argument("code")
+    params = parser.parse_args()
+    phone = int(params["phone"])
+    code = int(params["code"])
+    cursor = mydb.cursor()
+    cursor.execute("UPDATE auth SET code=%s WHERE phone = %s", (code, phone))
+    mydb.commit()
     cursor.close()
     mydb.close()
+    return str(code)
 
 if __name__ == '__main__':
 	app.run(port=1234,host='0.0.0.0')
