@@ -3,7 +3,7 @@ import mysql.connector
 from flask import request, Flask
 from flask_restful import Api, Resource, reqparse
 import time
-ann = 0
+ann = None
 app = Flask(__name__)
 app.debug = False
 
@@ -52,13 +52,15 @@ def auth_code():
 def api():
     app.run(port=1234,host='0.0.0.0')
 
-def main():
-    global ann
-    multi = multiprocessing.Process(target=api)
-    multi.start()
-    time.sleep(4)
-    multi.terminate()
-    print(ann)
+multi = multiprocessing.Process(target=api)
+multi.start()
+#time.sleep(4)
+while True:    
+    if ann == 1:
+        print(ann)
+        break
+multi.terminate()
+print(ann)
 
-if __name__ == "__main__":
-     main()
+#if __name__ == "__main__":
+#     main()
