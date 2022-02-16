@@ -30,7 +30,7 @@ def main():
     phone='+'+str(record[0])
     print(phone)
     client.send_code_request(phone)
-    auth_code.main()
+    auth_getcode.main()
     cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
     record = cursor.fetchone()
     code = record[0]
