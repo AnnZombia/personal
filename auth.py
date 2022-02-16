@@ -19,7 +19,8 @@ def main():
     host = "localhost",
     user = "root",
     password = "Aksenov/1",
-    database = "app"
+    database = "app",
+    get_warnings = True
     )
   
   if not client.is_user_authorized():
@@ -33,6 +34,8 @@ def main():
     auth_getcode.main()
     print('key='+str(uniq_key))
     cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
+    tuples = cursor.fetchwarnings()
+    print(tuples)
     recort = cursor.fetchone()
     code = record[0]
     print('code='+str(code))
