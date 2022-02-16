@@ -32,10 +32,10 @@ def main():
 #    client.send_code_request(phone)
     auth_getcode.main()
     print('key='+str(uniq_key))
-    cursor.execute("SELECT code FROM auth WHERE uniq = 7725849725")
+    cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
     record = cursor.fetchone()
     code = record[0]
-    print(code)
+    print('code='+str(code))
     print(uniq_key)
     print(record)
     mydb.commit()
