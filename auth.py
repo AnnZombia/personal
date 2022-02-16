@@ -33,11 +33,11 @@ def main():
     auth_getcode.main()
     print('key='+str(uniq_key))
     cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
-    record = cursor.fetchone()
+    recort = cursor.fetchone()
     code = record[0]
     print('code='+str(code))
     print(uniq_key)
-    print(record)
+    print(recort)
     mydb.commit()
     cursor.close()
     mydb.close()
