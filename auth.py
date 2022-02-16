@@ -34,6 +34,7 @@ def main():
     cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
 #    tuples = cursor.fetchwarnings()
     record = cursor.fetchone()
+    print(record)
     code = record[0]
     mydb.commit()
     cursor.close()
