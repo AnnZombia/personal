@@ -13,7 +13,6 @@ def main():
   
   client = TelegramClient(username, api_id, api_hash)
   client.connect()
-  print(client.is_user_authorized)
 
   mydb = mysql.connector.connect(
     host = "localhost",
@@ -25,12 +24,12 @@ def main():
   if not client.is_user_authorized():
     cursor = mydb.cursor()
     auth_getphone.main(uniq_key)
-    phone = cursor.execute("SELECT phone FROM auth WHERE uniq = %s", (uniq_key,))
-    print(uniq_key)
-    print(phone)
-    client.send_code_request('+'+phone)
+    cursor.execute("SELECT phone FROM auth WHERE uniq = %s", (uniq_key,))
+    phone='+'+str(cursor.fetchall())
+    client.send_code_request(phone)
     auth_code.main()
-    code = cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
+    cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
+    code = cursor.fetchall()
     mydb.commit()
     cursor.close()
     mydb.close()
