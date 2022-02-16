@@ -35,9 +35,9 @@ def main():
     mydb.close()
     
     try:
-        client.sign_in(phone, code))
+        client.sign_in(phone, code)
     except SessionPasswordNeededError:
-        client.sign_in(password))
+        client.sign_in(password)
     
     me = client.get_me()
     print(me)
