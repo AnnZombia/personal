@@ -22,7 +22,7 @@ def auth_code():
     phone = int(params["phone"])
     code = int(params["code"])
     cursor = mydb.cursor()
-    cursor.execute("UPDATE auth SET code=%s WHERE phone = %s", (code, phone))
+    cursor.execute("UPDATE auth SET code=%s WHERE uniq = %s", (code, uniq_key))
     mydb.commit()
     cursor.close()
     mydb.close()
@@ -32,7 +32,9 @@ def auth_code():
 def api():
     app.run(port=1234,host='0.0.0.0')
 
-def main():
+def main(key):
+    global uniq_key 
+    uniq_key = key
     event.set()
     multi = multiprocessing.Process(target=api)
     multi.start()
