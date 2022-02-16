@@ -31,6 +31,7 @@ def main():
     print(phone)
 #    client.send_code_request(phone)
     auth_getcode.main()
+    print('key='+uniq_key)
     cursor.execute("SELECT code FROM auth WHERE uniq = 7725849725")
     record = cursor.fetchone()
     code = record[0]
