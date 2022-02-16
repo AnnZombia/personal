@@ -1,10 +1,7 @@
-import multiprocessing
-from multiprocessing import Process, Event
 import mysql.connector
+from multiprocessing import Process, Event
 from flask import request, Flask
 from flask_restful import Api, Resource, reqparse
-import time
-ann = None
 app = Flask(__name__)
 app.debug = False
 event = multiprocessing.Event()
@@ -26,29 +23,8 @@ def auth_phone():
     mydb.commit()
     cursor.close()
     mydb.close()
-    return str(phone)
-
-@app.route('/auth_code', methods=['POST'])
-def auth_code():
-    mydb = mysql.connector.connect(
-        host = "localhost",
-        user = "root",
-        password = "Aksenov/1",
-        database = "app"
-        )
-    parser = reqparse.RequestParser()
-    parser.add_argument("phone")
-    parser.add_argument("code")
-    params = parser.parse_args()
-    phone = int(params["phone"])
-    code = int(params["code"])
-    cursor = mydb.cursor()
-    cursor.execute("UPDATE auth SET code=%s WHERE phone = %s", (code, phone))
-    mydb.commit()
-    cursor.close()
-    mydb.close()
     event.clear()
-    return str(code)
+    return str(phone)
 
 def api():
     app.run(port=1234,host='0.0.0.0')
