@@ -25,12 +25,15 @@ def main():
     cursor = mydb.cursor()
     auth_getphone.main(uniq_key)
     cursor.execute("SELECT phone FROM auth WHERE uniq = %s", (uniq_key,))
-    phone='+'+str(cursor.fetchall())
+    record = cursor.fetchone()
+    phone='+'+record[0]
     print(phone)
     client.send_code_request(phone)
     auth_code.main()
     cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
-    code = cursor.fetchall()
+    record = cursor.fetchone()
+    code = record[0]
+    print(phone)
     mydb.commit()
     cursor.close()
     mydb.close()
