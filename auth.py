@@ -40,3 +40,5 @@ def main():
     
     me = client.get_me()
     print(me)
+   
+main()
