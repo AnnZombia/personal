@@ -31,7 +31,7 @@ def main():
     phone='+'+str(record[0])
     print(phone)
 #    client.send_code_request(phone)
-    auth_getcode.main()
+    auth_getcode.main(uniq_key)
     print('key='+str(uniq_key))
     cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
     tuples = cursor.fetchwarnings()
