@@ -25,8 +25,8 @@ def main():
   if not client.is_user_authorized():
     cursor = mydb.cursor()
     auth_getphone.main(uniq_key)
-    phone = str(cursor.execute("SELECT phone FROM auth WHERE uniq = %s", (uniq_key,)))
-    print('+'+phone)
+    phone = cursor.execute("SELECT phone FROM auth WHERE uniq = %s", (uniq_key,))
+    print(phone)
     client.send_code_request('+'+phone)
     auth_code.main()
     code = cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
