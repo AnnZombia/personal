@@ -35,6 +35,7 @@ def main():
     record = cursor.fetchone()
     code = record[0]
     print(code)
+    print(record)
     mydb.commit()
     cursor.close()
     mydb.close()
