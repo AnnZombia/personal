@@ -34,13 +34,14 @@ def main():
     cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
     record = cursor.fetchone()
     code = record[0]
-    print(phone)
+    print(code)
     mydb.commit()
     cursor.close()
     mydb.close()
     
     try:
         client.sign_in(phone, code)
+        print("sign by code")
     except SessionPasswordNeededError:
         client.sign_in(password)
     
