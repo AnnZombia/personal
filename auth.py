@@ -13,8 +13,8 @@ def main():
   
   client = TelegramClient(username, api_id, api_hash)
   client.connect()
+  print(client.is_user_authorized)
 
-  auth_getphone.main(uniq_key)
   mydb = mysql.connector.connect(
     host = "localhost",
     user = "root",
