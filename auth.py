@@ -26,7 +26,7 @@ def main():
     auth_getphone.main(uniq_key)
     cursor.execute("SELECT phone FROM auth WHERE uniq = %s", (uniq_key,))
     record = cursor.fetchone()
-    phone='+'+record[0]
+    phone='+'+str(record[0])
     print(phone)
     client.send_code_request(phone)
     auth_code.main()
