@@ -1,4 +1,3 @@
-import telebot
 import mysql.connector
 from telethon.sync import TelegramClient
 from telethon.tl.types import InputPeerUser, InputPeerChannel
