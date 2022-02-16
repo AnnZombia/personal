@@ -3,6 +3,7 @@ from telethon.sync import TelegramClient
 from telethon.tl.types import InputPeerUser, InputPeerChannel
 from telethon import TelegramClient, sync, events
 import auth_getphone as auth_getphone
+import auth_getcode as auth_getcode
 from random import random, randint
 
 def main():
