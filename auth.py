@@ -10,12 +10,8 @@ from random import random, randint
 def main():
   api_id = 10787535
   api_hash = 'f4c93d55681e17b14d516e8f5571e4cd'
-  username = 'AnnZombia'
   uniq_key = randint (1000000000,9999999999)
   
-  client = TelegramClient(username, api_id, api_hash)
-  client.connect()
-
   mydb = mysql.connector.connect(
     host = "localhost",
     user = "root",
@@ -23,21 +19,30 @@ def main():
     database = "app",
     get_warnings = True
     )
+
+# need to write additional function for user_id retrieving
+  client = TelegramClient(username, api_id, api_hash)
+  client.connect()  
   
+# authorization check
   if not client.is_user_authorized():
     cursor = mydb.cursor()
+    
+# get phone number and write it to DB
     auth_getphone.main(uniq_key)
     cursor.execute("SELECT phone FROM auth WHERE uniq = %s", (uniq_key,))
     record = cursor.fetchone()
     phone='+'+str(record[0])
+
+# send code to client phone
     client.send_code_request(phone)
+    
+# get code and write it to DB
     auth_getcode.main(uniq_key)
     mydb.commit()
     cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
-#    tuples = cursor.fetchwarnings()
     record = cursor.fetchone()
     code = record[0]
-    print(phone, code)
     mydb.commit()
     cursor.close()
     mydb.close()
@@ -46,9 +51,9 @@ def main():
         client.sign_in(phone, code)
         print("sign by code")
     except SessionPasswordNeededError:
-        client.sign_in(password)
+        client.sign_in(password) # need to write additional function for password retrieving
     
     me = client.get_me()
     print(me)
-   
+     
 main()
