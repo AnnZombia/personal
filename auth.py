@@ -7,7 +7,7 @@ import auth_getphone as auth_getphone
 import auth_getcode as auth_getcode
 from random import random, randint
 
-def auth():
+def main():
   api_id = 10787535
   api_hash = 'f4c93d55681e17b14d516e8f5571e4cd'
   uniq_key = randint (1000000000,9999999999)
@@ -60,4 +60,4 @@ def auth():
       mydb.close()
   print('Hi, '+client.get_me().first_name+', you are authorized.')
      
-auth()
+main()
