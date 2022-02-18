@@ -42,4 +42,11 @@ def api():
 
 def main():
     auth.main()
-    api()
+    event.set()
+    multi = multiprocessing.Process(target=api)
+    multi.start()
+    while True:
+      if event.is_set() != True:
+        multi.terminate()
+        multi.join()
+        break
