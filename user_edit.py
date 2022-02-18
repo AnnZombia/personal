@@ -12,7 +12,7 @@ app = Flask(__name__)
 app.debug = False
 event = multiprocessing.Event()
 
-@app.post('/get_user')
+@app.route('/get_user', methods=['POST'])
 def get_user():
     mydb = mysql.connector.connect(
         host = "localhost",
@@ -41,6 +41,7 @@ def api():
     app.run(port=1235,host='0.0.0.0')
 
 def main():
+    auth.main()
     event.set()
     multi = multiprocessing.Process(target=api)
     multi.start()
