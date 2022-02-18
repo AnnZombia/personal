@@ -58,6 +58,6 @@ def main():
       mydb.commit()
       cursor.close()
       mydb.close()
-  print(client.get_me().first_name)
+  print('Hi, '+client.get_me().first_name+', you are authorized.')
      
 main()
