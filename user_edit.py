@@ -4,13 +4,13 @@ import auth
 from telethon.tl.functions.users import GetFullUserRequest
 import subprocess
 import mysql.connector
-#import multiprocessing
-#from multiprocessing import Process, Event
+import multiprocessing
+from multiprocessing import Process, Event
 from flask import request, Flask
 from flask_restful import Api, Resource, reqparse
 app = Flask(__name__)
 app.debug = False
-#event = multiprocessing.Event()
+event = multiprocessing.Event()
 
 @app.route('/get_user', methods=['POST'])
 def get_user():
@@ -30,13 +30,12 @@ def get_user():
     prey_name = params["name"]
     goal = params["goal"] 
     cursor = mydb.cursor()
- #   cursor.execute("INSERT INTO queries (name, phone, prey_name, prey_phone, goal, time) VALUES (%s, %s, %s, %s, %s, %s)", (auth.client.get_me().username, auth.client.get_me().phone, prey_name, prey_phone, goal, datetime.datetime.now().timestamp()))
-    cursor.execute("INSERT INTO queries (name, phone, prey_name, prey_phone, goal, time) VALUES (%s, %s, %s, %s, %s, %s)", ("dfcsf", "5454", prey_name, prey_phone, goal, datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+    cursor.execute("INSERT INTO queries (name, phone, prey_name, prey_phone, goal, time) VALUES (%s, %s, %s, %s, %s, %s)", (my_name, my_phone, prey_name, prey_phone, goal, datetime.datetime.now().timestamp()))
  
     mydb.commit()
     cursor.close()
     mydb.close()
-#    event.clear()
+    event.clear()
     return "200"
 
 def api():
@@ -44,14 +43,14 @@ def api():
 
 def main():
     auth.main()
-    print(auth.client.get_me().username)
-#    event.set()
-    api()
-#    multi = multiprocessing.Process(target=api)
-#    multi.start()
-#    while True:
-###      if event.is_set() != True:
-  ##      multi.terminate()
-   #     multi.join()
-   #     break
+    event.set()
+    my_name = auth.client.get_me().username
+    my_phone = auth.client.get_me().phone
+    multi = multiprocessing.Process(target=api)
+    multi.start()
+    while True:
+      if event.is_set() != True:
+        multi.terminate()
+        multi.join()
+        break
 main()
