@@ -12,7 +12,7 @@ app = Flask(__name__)
 app.debug = False
 event = multiprocessing.Event()
 
-@app.post('/get_user/')
+@app.post('/get_user')
 def get_user():
     mydb = mysql.connector.connect(
         host = "localhost",
