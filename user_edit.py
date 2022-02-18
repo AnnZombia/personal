@@ -29,7 +29,7 @@ def get_user():
     prey_name = params["name"]
     goal = params["goal"] 
     cursor = mydb.cursor()
-    cursor.execute("INSERT INTO queries (name, phone, prey_name, prey_phone, goal, time) VALUES (%s, %s, %s, %s, %s, %s)", (my_name, my_phone, prey_name, prey_phone, goal, datetime.datetime.now().timestamp()))
+    cursor.execute("INSERT INTO queries (name, phone, prey_name, prey_phone, goal, time) VALUES (%s, %s, %s, %s, %s, %s)", (my_name, my_phone, prey_name, prey_phone, goal, datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
  
     mydb.commit()
     cursor.close()
