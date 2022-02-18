@@ -40,20 +40,6 @@ def get_user():
 def api():
     app.run(port=1235,host='0.0.0.0')
 
-api()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-client.disconnect()
+def main():
+    auth()
+    api()
