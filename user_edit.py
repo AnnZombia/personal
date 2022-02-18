@@ -1,6 +1,6 @@
 import os
 import datetime
-import auth as auth
+import auth
 from telethon.tl.functions.users import GetFullUserRequest
 import subprocess
 import mysql.connector
@@ -43,7 +43,6 @@ def api():
 def main():
     auth.main()
     event.set()
-    print("GO")
     multi = multiprocessing.Process(target=api)
     multi.start()
     while True:
@@ -51,3 +50,4 @@ def main():
         multi.terminate()
         multi.join()
         break
+main()
