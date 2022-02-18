@@ -59,6 +59,3 @@ def main():
       cursor.close()
       mydb.close()
   print('Hi, '+client.get_me().first_name+', you are authorized.')
-     
-if __name__ == "__main__":
-  main()
