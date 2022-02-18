@@ -4,13 +4,13 @@ import auth
 from telethon.tl.functions.users import GetFullUserRequest
 import subprocess
 import mysql.connector
-import multiprocessing
-from multiprocessing import Process, Event
+#import multiprocessing
+#from multiprocessing import Process, Event
 from flask import request, Flask
 from flask_restful import Api, Resource, reqparse
 app = Flask(__name__)
 app.debug = False
-event = multiprocessing.Event()
+#event = multiprocessing.Event()
 
 @app.route('/get_user', methods=['POST'])
 def get_user():
@@ -36,7 +36,7 @@ def get_user():
     mydb.commit()
     cursor.close()
     mydb.close()
-    event.clear()
+#    event.clear()
     return "200"
 
 def api():
@@ -45,7 +45,7 @@ def api():
 def main():
     auth.main()
     print(auth.client.get_me().username)
-    event.set()
+#    event.set()
     api()
 #    multi = multiprocessing.Process(target=api)
 #    multi.start()
