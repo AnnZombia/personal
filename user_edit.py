@@ -31,7 +31,7 @@ def get_user():
     goal = params["goal"] 
     cursor = mydb.cursor()
  #   cursor.execute("INSERT INTO queries (name, phone, prey_name, prey_phone, goal, time) VALUES (%s, %s, %s, %s, %s, %s)", (auth.client.get_me().username, auth.client.get_me().phone, prey_name, prey_phone, goal, datetime.datetime.now().timestamp()))
-    cursor.execute("INSERT INTO queries (name, phone, prey_name, prey_phone, goal, time) VALUES (%s, %s, %s, %s, %s, %s)", ("sername", "544654", prey_name, prey_phone, goal, datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+    cursor.execute("INSERT INTO queries (name, phone, prey_name, prey_phone, goal, time) VALUES (%s, %s, %s, %s, %s, %s)", (client.get_me().username, client.get_me().phone, prey_name, prey_phone, goal, datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
  
     mydb.commit()
     cursor.close()
