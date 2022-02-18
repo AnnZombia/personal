@@ -1,6 +1,6 @@
 import os
 import datetime
-import auth as auth
+import auth
 from telethon.tl.functions.users import GetFullUserRequest
 import subprocess
 import mysql.connector
