@@ -43,6 +43,8 @@ def api():
 def main():
     auth.main()
     event.set()
+    global my_name
+    global my_phone
     my_name = auth.client.get_me().username
     my_phone = auth.client.get_me().phone
     multi = multiprocessing.Process(target=api)
