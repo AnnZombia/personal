@@ -21,7 +21,7 @@ def get_user():
         password = "Aksenov/1",
         database = "app"
         )
-    
+    print(auth.client.get_me().username+"yea")
     parser = reqparse.RequestParser()
     parser.add_argument("name")
     parser.add_argument("phone")
