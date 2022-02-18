@@ -14,6 +14,7 @@ event = multiprocessing.Event()
 
 @app.route('/get_user', methods=['POST'])
 def get_user():
+    global client
     mydb = mysql.connector.connect(
         host = "localhost",
         user = "root",
