@@ -36,16 +36,15 @@ def main():
 
 # send code to client phone
     client.send_code_request(phone)
+  
     
 # get code and write it to DB
     auth_getcode.main(uniq_key)
-    mydb.commit()
     cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
     record = cursor.fetchone()
     code = record[0]
     mydb.commit()
-    cursor.close()
-    mydb.close()
+
     
     try:
         client.sign_in(phone, code)
@@ -54,6 +53,10 @@ def main():
         client.sign_in(password) # need to write additional function for password retrieving
     
     me = client.get_me()
-    print(me)
+    if client.get_me().first_name != None:
+      cursor.execute("DELETE FROM auth WHERE uniq = %s", (uniq_key,))
+      mydb.commit()
+      cursor.close()
+      mydb.close()
      
 main()
