@@ -37,7 +37,7 @@ def get_user():
     cursor.close()
     mydb.close()
     event.clear()
-    return 200
+    return "200"
 
 def api():
     app.run(port=1235,host='0.0.0.0')
