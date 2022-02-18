@@ -14,14 +14,13 @@ event = multiprocessing.Event()
 
 @app.route('/get_user', methods=['POST'])
 def get_user():
-    global client
     mydb = mysql.connector.connect(
         host = "localhost",
         user = "root",
         password = "Aksenov/1",
         database = "app"
         )
-    print(auth.client.get_me().username+"yea")
+#    print(auth.client.get_me().username+"yea")
     parser = reqparse.RequestParser()
     parser.add_argument("name")
     parser.add_argument("phone")
