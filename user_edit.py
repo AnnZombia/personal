@@ -41,7 +41,6 @@ def api():
     app.run(port=1235,host='0.0.0.0')
 
 def main():
-#    auth.main()
     event.set()
     multi = multiprocessing.Process(target=api)
     multi.start()
