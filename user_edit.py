@@ -45,8 +45,8 @@ def api():
 def main():
     auth.main()
     print(auth.client.get_me().username)
-    print(auth.main.client.get_me().username)
-    print(client.get_me().username)
+ #   print(auth.main.client.get_me().username)
+#    print(client.get_me().username)
     event.set()
     multi = multiprocessing.Process(target=api)
     multi.start()
