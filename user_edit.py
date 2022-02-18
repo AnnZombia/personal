@@ -42,6 +42,7 @@ def api():
 
 def main():
     auth.main()
+    print(dir(auth))
     event.set()
     multi = multiprocessing.Process(target=api)
     multi.start()
