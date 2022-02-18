@@ -21,7 +21,7 @@ def main():
     )
 
 # need to write additional function for user_id retrieving
-  client = TelegramClient(AnnZombia, api_id, api_hash)
+  client = TelegramClient('AnnZombia', api_id, api_hash)
   client.connect()  
   
 # authorization check
