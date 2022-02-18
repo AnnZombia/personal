@@ -14,6 +14,8 @@ event = multiprocessing.Event()
 
 @app.route('/get_user', methods=['POST'])
 def get_user():
+    auth.main()
+    print(auth.client.get_me().username)
     mydb = mysql.connector.connect(
         host = "localhost",
         user = "root",
@@ -43,8 +45,8 @@ def api():
     app.run(port=1235,host='0.0.0.0')
 
 def main():
-    auth.main()
-    print(auth.client.get_me().username)
+#    auth.main()
+ #   print(auth.client.get_me().username)
     event.set()
     multi = multiprocessing.Process(target=api)
     multi.start()
