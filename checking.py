@@ -6,3 +6,5 @@ def main():
     print(auth.client.get_me().username)
     auth.client.send_message('annzombia2', 'hi')				
     auth.client.disconnect()
+
+main()
