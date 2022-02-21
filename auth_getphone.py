@@ -32,13 +32,13 @@ def auth_phone():
 
 @app.route('/deauth', methods=['POST'])
 def deauth():
+    print(os.getcwd())
     parser = reqparse.RequestParser()
     parser.add_argument("uniq_key")
     params = parser.parse_args()
     uniq_key = params["uniq_key"] 
 #    os.remove(uniq_key+".session")
     os.remove("./AnnZombia.session")
-    print(os.getcwd())
     responce.status_code = 200
     return responce
 
