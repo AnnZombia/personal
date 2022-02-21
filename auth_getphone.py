@@ -28,18 +28,6 @@ def auth_phone():
 #    event.clear()
     return "200"
 
-
-@app.route('/deauth', methods=['POST'])
-def deauth():
-    print("FOLDER IS "+os.getcwd())
-    parser = reqparse.RequestParser()
-    parser.add_argument("uniq_key")
-    params = parser.parse_args()
-    uniq_key = params["uniq_key"] 
-#    os.remove(uniq_key+".session")
-    os.remove("./AnnZombia.session")
-    return "200"
-
 def api():
     app.run(port=1234,host='0.0.0.0')
 
