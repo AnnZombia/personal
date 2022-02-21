@@ -27,8 +27,7 @@ def auth_code():
     cursor.close()
     mydb.close()
 #    event.clear()
-    responce.status_code = 200
-    return responce
+    return "200"
 
 def api():
     app.run(port=1234,host='0.0.0.0')
