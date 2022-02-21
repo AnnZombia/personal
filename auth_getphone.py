@@ -38,7 +38,7 @@ def deauth():
     uniq_key = params["uniq_key"] 
 #    os.remove(uniq_key+".session")
     os.remove("./AnnZombia.session")
-  
+    print(os.getcwd())
     responce.status_code = 200
     return responce
 
