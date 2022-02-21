@@ -21,18 +21,29 @@ def get_user():
         database = "app"
         )
     parser = reqparse.RequestParser()
+    parser.add_argument("uniq_key")
     parser.add_argument("name")
     parser.add_argument("phone")
     parser.add_argument("goal")
     params = parser.parse_args()
+    uniq_key = int(params["uniq_key"])
     prey_phone = int(params["phone"])
     prey_name = params["name"]
     goal = params["goal"] 
     cursor = mydb.cursor()
+    
+    # check registration
+    cursor.execute("SELECT register FROM auth WHERE uniq = %s", (uniq_key,))
+    record = cursor.fetchone()
+    if record is False:
+        auth.main()
+    mydb.commit()
+    
+    # adding/deleting prey
     if goal != 'delete':
-        cursor.execute("INSERT INTO queries (name, phone, prey_name, prey_phone, goal, time) VALUES (%s, %s, %s, %s, %s, %s)", (my_name, my_phone, prey_name, prey_phone, goal, datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+        cursor.execute("INSERT INTO queries (uniq, prey_name, prey_phone, goal, time) VALUES (%s, %s, %s, %s, %s)", (uniq_key, prey_name, prey_phone, goal, datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
     else:
-        cursor.execute("DELETE FROM queries WHERE phone=%s and prey_phone=%s and prey_name=%s", (my_phone, prey_phone, prey_name))
+        cursor.execute("DELETE FROM queries WHERE uniq=%s and prey_phone=%s and prey_name=%s", (uniq_key, prey_phone, prey_name))
                     
     mydb.commit()
     cursor.close()
@@ -42,13 +53,11 @@ def get_user():
 
 @app.route('/deauth', methods=['POST'])
 def deauth():
-    print("FOLDER IS "+os.getcwd())
     parser = reqparse.RequestParser()
     parser.add_argument("uniq_key")
     params = parser.parse_args()
     uniq_key = params["uniq_key"] 
-#    os.remove(uniq_key+".session")
-    os.remove("./AnnZombia.session")
+    os.remove("./"+uniq_key+".session")
     return "200"
 
 
@@ -56,17 +65,7 @@ def api():
     app.run(port=1235,host='0.0.0.0')
 
 def main():
-    auth.main()
-    event.set()
-    global my_name
-    global my_phone
-    my_name = auth.client.get_me().username
-    my_phone = auth.client.get_me().phone
     multi = multiprocessing.Process(target=api)
     multi.start()
-    while True:
-      if event.is_set() != True:
-        multi.terminate()
-        multi.join()
-        break
+    
 main()
