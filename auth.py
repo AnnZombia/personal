@@ -33,6 +33,7 @@ def main():
     auth_getphone.main(uniq_key)
     cursor.execute("SELECT phone FROM auth WHERE uniq = %s", (uniq_key,))
     record = cursor.fetchone()
+    print("it is a mistake"+record)
     phone='+'+str(record[0])
 
 # send code to client phone
