@@ -38,7 +38,7 @@ def deauth():
     params = parser.parse_args()
     uniq_key = params["uniq_key"] 
 #    os.remove(uniq_key+".session")
-    os.remove("./AnnZombia.session")
+    os.remove("AnnZombia.session")
     responce.status_code = 200
     return responce
 
