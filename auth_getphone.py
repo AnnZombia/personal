@@ -26,13 +26,7 @@ def auth_phone():
     
     # не забыть сделать проверку ключа на уникальность
     
-    if name is None:
-        cursor.execute("INSERT INTO auth (phone, uniq) VALUES (%s, %s)", (phone, uniq_key))
-    elif phone is None:
-        cursor.execute("INSERT INTO auth (name, uniq) VALUES (%s, %s)", (name, uniq_key))
-    elif name != None and phone != None:
-        cursor.execute("INSERT INTO auth (name, phone, uniq) VALUES (%s, %s, %s)", (name, phone, uniq_key))
-        
+    cursor.execute("INSERT INTO auth (name, phone, uniq) VALUES (%s, %s, %s)", (name, phone, uniq_key))
     mydb.commit()
     cursor.close()
     mydb.close()
@@ -55,14 +49,7 @@ def auth_code():
     code = int(params["code"])
     name = params["name"]
     cursor = mydb.cursor()
-    
-    if name is None:
-        cursor.execute("UPDATE auth SET code=%s WHERE uniq = %s and phone=%s", (code, uniq_key, phone))
-    elif phone is None:
-        cursor.execute("UPDATE auth SET code=%s WHERE uniq = %s and name=%s", (code, uniq_key, name))
-    elif name != None and phone != None:
-        cursor.execute("UPDATE auth SET code=%s WHERE uniq = %s and phone=%s and name=%s", (code, uniq_key, phone, name))
-    
+    cursor.execute("UPDATE auth SET code=%s WHERE uniq = %s and phone=%s and name=%s", (code, uniq_key, phone, name))
     mydb.commit()
     cursor.close()
     mydb.close()
