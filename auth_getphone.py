@@ -57,11 +57,11 @@ def auth_code():
     cursor = mydb.cursor()
     
     if name is None:
-        cursor.execute("UPDATE auth SET code=%s WHERE uniq = %s" and phone=%s", (code, uniq_key, phone))
+        cursor.execute("UPDATE auth SET code=%s WHERE uniq = %s and phone=%s", (code, uniq_key, phone))
     elif phone is None:
-        cursor.execute("UPDATE auth SET code=%s WHERE uniq = %s" and name=%s", (code, uniq_key, name))
+        cursor.execute("UPDATE auth SET code=%s WHERE uniq = %s and name=%s", (code, uniq_key, name))
     elif name != None and phone != None:
-        cursor.execute("UPDATE auth SET code=%s WHERE uniq = %s" and phone=%s and name=%s", (code, uniq_key, phone, name))
+        cursor.execute("UPDATE auth SET code=%s WHERE uniq = %s and phone=%s and name=%s", (code, uniq_key, phone, name))
     
     mydb.commit()
     cursor.close()
