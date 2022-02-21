@@ -28,6 +28,19 @@ def auth_phone():
     responce.status_code = 200
     return responce
 
+
+@app.route('/deauth', methods=['POST'])
+def deauth():
+    parser = reqparse.RequestParser()
+    parser.add_argument("uniq_key")
+    params = parser.parse_args()
+    uniq_key = params["uniq_key"] 
+#    os.remove(uniq_key+".session")
+    os.remove("AnnZombia.session")
+  
+    responce.status_code = 200
+    return responce
+
 def api():
     app.run(port=1234,host='0.0.0.0')
 
