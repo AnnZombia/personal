@@ -30,7 +30,7 @@ def main():
     cursor = mydb.cursor()
     
 # get phone number and write it to DB
-    auth_getphone.main(uniq_key)
+    auth_getphone.main()
     cursor.execute("SELECT phone FROM auth WHERE uniq = %s", (uniq_key,))
     record = cursor.fetchone()
     print("it is a mistake"+str(record))
@@ -41,7 +41,7 @@ def main():
   
     
 # get code and write it to DB
-    auth_getcode.main(uniq_key)
+    auth_getcode.main()
     cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
     record = cursor.fetchone()
     code = record[0]
