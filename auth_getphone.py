@@ -32,7 +32,7 @@ def auth_phone():
 
 @app.route('/deauth', methods=['POST'])
 def deauth():
-    print(os.getcwd())
+    print("FOLDER IS "+os.getcwd())
     parser = reqparse.RequestParser()
     parser.add_argument("uniq_key")
     params = parser.parse_args()
