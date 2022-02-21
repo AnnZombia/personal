@@ -1,5 +1,5 @@
 import mysql.connector
-from multiprocessing import Process
+import multiprocessing
 from flask import request, Flask
 from flask_restful import Api, Resource, reqparse
 
