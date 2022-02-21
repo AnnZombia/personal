@@ -6,7 +6,7 @@ from flask import request, Flask
 from flask_restful import Api, Resource, reqparse
 app = Flask(__name__)
 app.debug = False
-#event = multiprocessing.Event()
+event = multiprocessing.Event()
 
 @app.route('/auth_phone', methods=['POST'])
 def auth_phone():
@@ -25,7 +25,7 @@ def auth_phone():
     mydb.commit()
     cursor.close()
     mydb.close()
-#    event.clear()
+    event.clear()
     return "200"
 
 def api():
@@ -34,11 +34,11 @@ def api():
 def main(key):
     global uniq_key 
     uniq_key = key
-#    event.set()
+    event.set()
     multi = multiprocessing.Process(target=api)
     multi.start()
-#    while True:
-#        if event.is_set() != True:
-#            multi.terminate()
-#            multi.join()
-#            break
+    while True:
+        if event.is_set() != True:
+            multi.terminate()
+            multi.join()
+            break
