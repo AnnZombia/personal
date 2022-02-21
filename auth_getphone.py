@@ -26,8 +26,7 @@ def auth_phone():
     cursor.close()
     mydb.close()
 #    event.clear()
-    responce.status_code = 200
-    return responce
+    return "200"
 
 
 @app.route('/deauth', methods=['POST'])
@@ -39,8 +38,7 @@ def deauth():
     uniq_key = params["uniq_key"] 
 #    os.remove(uniq_key+".session")
     os.remove("./AnnZombia.session")
-    responce.status_code = 200
-    return responce
+    return "200"
 
 def api():
     app.run(port=1234,host='0.0.0.0')
