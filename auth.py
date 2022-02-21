@@ -53,11 +53,4 @@ def main():
         print("sign by code")
     except SessionPasswordNeededError:
         client.sign_in(password) # need to write additional function for password retrieving
-    
-    me = client.get_me()
-    if client.get_me().first_name != None:
-      cursor.execute("DELETE FROM auth WHERE uniq = %s", (uniq_key,))
-      mydb.commit()
-      cursor.close()
-      mydb.close()
-  print('Hi, '+client.get_me().first_name+', you are authorized.')
+   
