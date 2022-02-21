@@ -32,7 +32,7 @@ def get_user():
     if goal != 'delete':
         cursor.execute("INSERT INTO queries (name, phone, prey_name, prey_phone, goal, time) VALUES (%s, %s, %s, %s, %s, %s)", (my_name, my_phone, prey_name, prey_phone, goal, datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
     else:
-        cursor.execute("DELETE FROM queries WHERE phone=%s and WHERE prey_phone=%s and WHERE prey_name=%s", (my_phone, prey_phone, prey_name))
+        cursor.execute("DELETE FROM queries WHERE phone=%s and WHERE prey_phone=%s and prey_name=%s", (my_phone, prey_phone, prey_name))
                     
     mydb.commit()
     cursor.close()
