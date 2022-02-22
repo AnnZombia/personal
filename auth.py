@@ -1,6 +1,5 @@
 import mysql.connector
 import time
-import asyncio
 from telethon.errors import SessionPasswordNeededError
 from telethon.sync import TelegramClient
 from telethon.tl.types import InputPeerUser, InputPeerChannel
@@ -16,11 +15,11 @@ api_hash = 'f4c93d55681e17b14d516e8f5571e4cd'
 
 def main():
     global client
-    app.run(port=1234,host='0.0.0.0')
+    app.run()
  
 # первоначальная проверка ключа на уникальность
 @app.route('/auth_init', methods=['POST'])
-async def auth_init():
+def auth_init():
   parser = reqparse.RequestParser()
   parser.add_argument("uniq_key")
   params = parser.parse_args()
@@ -46,7 +45,7 @@ async def auth_init():
 
 # начало регистрации
 @app.route('/auth_phone', methods=['POST'])
-async def auth_phone():
+def auth_phone():
     mydb = mysql.connector.connect(
        host = "localhost",
        user = "root",
@@ -77,7 +76,7 @@ async def auth_phone():
 
 # получаем код и выполняем вход
 @app.route('/auth_code', methods=['POST'])
-async def auth_code():
+def auth_code():
     mydb = mysql.connector.connect(
         host = "localhost",
         user = "root",
@@ -98,7 +97,14 @@ async def auth_code():
     mydb.commit()
     cursor.close()
     mydb.close()
+    multi = multiprocessing.Process(target=login(uniq_key,record[0],code,record[1]))
+    multi.start()
     
+def login(uniq_key1, phone1, code1, password1):
+    phone = phone1
+    code = code1
+    uniq_key = uniq_key1
+    password = password1
     client = TelegramClient(str(uniq_key), api_id, api_hash) 
     client.connect()
     try:
@@ -108,5 +114,9 @@ async def auth_code():
       client.sign_in(password)
       return "200"
     client.disconnect() 
-        
+    
+
+def api():
+    app.run(port=1234,host='0.0.0.0')
+    
 main()
