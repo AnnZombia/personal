@@ -16,7 +16,7 @@ api_hash = 'f4c93d55681e17b14d516e8f5571e4cd'
 
 def main():
     global client
-    api.run()
+    app.run(port=1234,host='0.0.0.0')
  
 # первоначальная проверка ключа на уникальность
 @app.route('/auth_init', methods=['POST'])
@@ -114,9 +114,5 @@ async def login(uniq_key1, phone1, code1, password1):
       client.sign_in(password)
       return "200"
     client.disconnect() 
-    
-
-def api():
-    app.run(port=1234,host='0.0.0.0')
-    
+        
 main()
