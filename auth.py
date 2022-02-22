@@ -17,6 +17,8 @@ api_hash = 'f4c93d55681e17b14d516e8f5571e4cd'
 def main():
     global client
     app.run(port=1234,host='0.0.0.0')
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
  
 # первоначальная проверка ключа на уникальность
 @app.route('/auth_init', methods=['POST'])
@@ -99,8 +101,6 @@ def auth_code():
     cursor.close()
     mydb.close()
     
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
     client = TelegramClient(str(uniq_key), api_id, api_hash, loop=loop) 
     client.connect()
     try:
