@@ -48,6 +48,8 @@ def auth_init():
 # начало регистрации
 @app.route('/auth_phone', methods=['POST'])
 def auth_phone():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
     mydb = mysql.connector.connect(
        host = "localhost",
        user = "root",
@@ -64,7 +66,7 @@ def auth_phone():
     phone = int(params["phone"])
     name = params["name"]
     password = params["password"]
-    client = TelegramClient(str(uniq_key), api_id, api_hash) 
+    client = TelegramClient(str(uniq_key), api_id, api_hash, loop=loop) 
     client.connect()
     client.send_code_request('+'+(params["phone"]))
     client.disconnect() 
