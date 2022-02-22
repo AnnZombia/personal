@@ -94,3 +94,5 @@ def auth_code():
     except SessionPasswordNeededError:
       client.sign_in(record[1]) # need to write additional function for password retrieving
       return "200"
+    
+main()
