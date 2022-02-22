@@ -100,15 +100,10 @@ def auth_code():
     record = cursor.fetchone()
     cursor.close()
     mydb.close()
-    asyncio.run(login(uniq_key,record[0],code,record[1]))
-    
-async def login(uniq_key1, phone1, code1, password1):
-    phone = phone1
-    code = code1
-    uniq_key = uniq_key1
-    password = password1
+    phone = '+'+record[0]
+    password = record[1]
     client = TelegramClient(str(uniq_key), api_id, api_hash, loop=loop) 
-    client.start()
+    client.connect()
     try:
       client.sign_in(phone, code)
       return "200"
