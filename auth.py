@@ -1,5 +1,6 @@
 import mysql.connector
 import time
+import asyncio
 from telethon.errors import SessionPasswordNeededError
 from telethon.sync import TelegramClient
 from telethon.tl.types import InputPeerUser, InputPeerChannel
@@ -98,7 +99,7 @@ def auth_code():
     mydb.commit()
     cursor.close()
     mydb.close()
-    login(uniq_key,record[0],code,record[1])
+    asyncio.run(login(uniq_key,record[0],code,record[1]))
     
 async def login(uniq_key1, phone1, code1, password1):
     phone = phone1
