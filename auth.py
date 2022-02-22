@@ -64,16 +64,18 @@ def auth_phone():
     phone = int(params["phone"])
     name = params["name"]
     password = params["password"]
-    cursor = mydb.cursor()
-    cursor.execute("INSERT INTO auth (name, phone, uniq, password) VALUES (%s, %s, %s, %s)", (name, phone, uniq_key, password))
-    mydb.commit()
-    cursor.close()
-    mydb.close()
     client = TelegramClient(str(uniq_key), api_id, api_hash) 
     client.connect()
     client.send_code_request('+'+(params["phone"]))
+    phone_code_hash = client.send_code_request(phone).phone_code_hash
     time.sleep(60)
     client.disconnect() 
+    cursor = mydb.cursor()
+    cursor.execute("INSERT INTO auth (name, phone, uniq, password, hash) VALUES (%s, %s, %s, %s, %s)", (name, phone, uniq_key, password, phone_code_hash))
+    mydb.commit()
+    cursor.close()
+    mydb.close()
+    
     return "200"
 
 # получаем код и выполняем вход
@@ -96,17 +98,18 @@ def auth_code():
     cursor = mydb.cursor(buffered=True)
     cursor.execute("UPDATE auth SET code=%s WHERE uniq = %s", (code, uniq_key))
     mydb.commit()
-    cursor.execute("SELECT phone, password FROM auth WHERE uniq = %s", (uniq_key,))
+    cursor.execute("SELECT phone, password, hash FROM auth WHERE uniq = %s", (uniq_key,))
     mydb.commit()
     record = cursor.fetchone()
     cursor.close()
     mydb.close()
     phone = '+'+str(record[0])
     password = str(record[1])
+    hash = str(record[2])
     client = TelegramClient(str(uniq_key), api_id, api_hash, loop=loop) 
     client.connect()
     try:
-      client.sign_in(phone, code)
+      client.sign_in(phone, code, hash)
       return "200"
     except SessionPasswordNeededError:
       client.sign_in(password)
