@@ -45,7 +45,13 @@ def auth_init():
 
 # начало регистрации
 @app.route('/auth_phone', methods=['POST'])
-def auth_phone():  
+def auth_phone():
+  mydb = mysql.connector.connect(
+     host = "localhost",
+     user = "root",
+     password = "Aksenov/1",
+     database = "app"
+     )
   parser = reqparse.RequestParser()
   parser.add_argument("uniq_key")
   parser.add_argument("phone")
