@@ -109,7 +109,7 @@ def auth_code():
     client.connect()
     try:
       #client.sign_in(phone, code)
-      me = client.sign_in(phone_number, input('Enter code: '))
+      me = client.sign_in(phone, input('Enter code: '))
       return "200"
     except SessionPasswordNeededError:
       client.sign_in(password)
