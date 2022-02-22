@@ -67,7 +67,7 @@ def auth_phone():
   mydb.commit()
   cursor.close()
   mydb.close()
-  client = TelegramClient("uniq_key", api_id, api_hash) 
+  client = TelegramClient(str(uniq_key), api_id, api_hash) 
   client.send_code_request('+'+(params["phone"]))
   return "200"
 
