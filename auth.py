@@ -16,7 +16,7 @@ api_hash = 'f4c93d55681e17b14d516e8f5571e4cd'
 
 def main():
     global client
-    app.run()
+    api.run()
  
 # первоначальная проверка ключа на уникальность
 @app.route('/auth_init', methods=['POST'])
