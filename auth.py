@@ -96,7 +96,7 @@ def auth_code():
     cursor = mydb.cursor()
     cursor.execute("UPDATE auth SET code=%s WHERE uniq = %s", (code, uniq_key))
     mydb.commit()
-    cursor.execute("SELECT phone, password FROM auth WHERE uniq_key = %s", (uniq_key,))
+    cursor.execute("SELECT phone, password FROM auth WHERE uniq = %s", (uniq_key,))
     record = cursor.fetchone()
     mydb.commit()
     cursor.close()
