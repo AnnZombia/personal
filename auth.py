@@ -98,7 +98,6 @@ def auth_code():
     mydb.commit()
     cursor.execute("SELECT phone, password FROM auth WHERE uniq = %s", (uniq_key,))
     record = cursor.fetchone()
-    mydb.commit()
     cursor.close()
     mydb.close()
     asyncio.run(login(uniq_key,record[0],code,record[1]))
