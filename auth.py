@@ -94,5 +94,8 @@ def auth_code():
     except SessionPasswordNeededError:
       client.sign_in(record[1]) # need to write additional function for password retrieving
       return "200"
+
+def api():
+    app.run(port=1234,host='0.0.0.0')
     
 main()
