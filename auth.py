@@ -110,7 +110,7 @@ def auth_code():
     client = TelegramClient(str(uniq_key), api_id, api_hash, loop=loop) 
     client.connect()
     try:
-      client.sign_in(phone, code, hash)
+      client.sign_in(phone, code)
       return "200"
     except SessionPasswordNeededError:
       client.sign_in(password)
