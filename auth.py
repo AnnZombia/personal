@@ -67,11 +67,9 @@ def auth_phone():
     client = TelegramClient(str(uniq_key), api_id, api_hash) 
     client.connect()
     client.send_code_request('+'+(params["phone"]))
-    phone_code_hash = client.send_code_request(phone).phone_code_hash
-    time.sleep(60)
     client.disconnect() 
     cursor = mydb.cursor()
-    cursor.execute("INSERT INTO auth (name, phone, uniq, password, hash) VALUES (%s, %s, %s, %s, %s)", (name, phone, uniq_key, password, phone_code_hash))
+    cursor.execute("INSERT INTO auth (name, phone, uniq, password) VALUES (%s, %s, %s, %s)", (name, phone, uniq_key, password))
     mydb.commit()
     cursor.close()
     mydb.close()
@@ -105,8 +103,6 @@ def auth_code():
     mydb.close()
     phone = '+'+str(record[0])
     password = str(record[1])
-    #hash = str(record[2])
-    hash = 'bgfdhg54t54'
     client = TelegramClient(str(uniq_key), api_id, api_hash, loop=loop) 
     client.connect()
     try:
