@@ -16,14 +16,11 @@ api_hash = 'f4c93d55681e17b14d516e8f5571e4cd'
 
 def main():
     global client
-    global loop
     app.run(port=1234,host='0.0.0.0')
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
  
 # первоначальная проверка ключа на уникальность
 @app.route('/auth_init', methods=['POST'])
-def auth_init():
+async def auth_init():
   parser = reqparse.RequestParser()
   parser.add_argument("uniq_key")
   params = parser.parse_args()
@@ -49,7 +46,7 @@ def auth_init():
 
 # начало регистрации
 @app.route('/auth_phone', methods=['POST'])
-def auth_phone():
+async def auth_phone():
     mydb = mysql.connector.connect(
        host = "localhost",
        user = "root",
@@ -80,7 +77,7 @@ def auth_phone():
 
 # получаем код и выполняем вход
 @app.route('/auth_code', methods=['POST'])
-def auth_code():
+async def auth_code():
     mydb = mysql.connector.connect(
         host = "localhost",
         user = "root",
@@ -102,7 +99,7 @@ def auth_code():
     cursor.close()
     mydb.close()
     
-    client = TelegramClient(str(uniq_key), api_id, api_hash, loop=loop) 
+    client = TelegramClient(str(uniq_key), api_id, api_hash) 
     client.connect()
     try:
       client.sign_in(phone, code)
