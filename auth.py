@@ -47,33 +47,33 @@ def auth_init():
 # начало регистрации
 @app.route('/auth_phone', methods=['POST'])
 def auth_phone():
-  mydb = mysql.connector.connect(
-     host = "localhost",
-     user = "root",
-     password = "Aksenov/1",
-     database = "app"
-     )
-  parser = reqparse.RequestParser()
-  parser.add_argument("uniq_key")
-  parser.add_argument("phone")
-  parser.add_argument("password")
-  parser.add_argument("name")
-  params = parser.parse_args()
-  uniq_key = int(params["uniq_key"]) 
-  phone = int(params["phone"])
-  name = params["name"]
-  password = params["password"]
-  cursor = mydb.cursor()
-  cursor.execute("INSERT INTO auth (name, phone, uniq, password) VALUES (%s, %s, %s, %s)", (name, phone, uniq_key, password))
-  mydb.commit()
-  cursor.close()
-  mydb.close()
-  client = TelegramClient(str(uniq_key), api_id, api_hash) 
-  client.start()
-  client.send_code_request('+'+(params["phone"]))
-  time.sleep(60)
-  client.disconnect() 
-  return "200"
+    mydb = mysql.connector.connect(
+       host = "localhost",
+       user = "root",
+       password = "Aksenov/1",
+       database = "app"
+       )
+    parser = reqparse.RequestParser()
+    parser.add_argument("uniq_key")
+    parser.add_argument("phone")
+    parser.add_argument("password")
+    parser.add_argument("name")
+    params = parser.parse_args()
+    uniq_key = int(params["uniq_key"]) 
+    phone = int(params["phone"])
+    name = params["name"]
+    password = params["password"]
+    cursor = mydb.cursor()
+    cursor.execute("INSERT INTO auth (name, phone, uniq, password) VALUES (%s, %s, %s, %s)", (name, phone, uniq_key, password))
+    mydb.commit()
+    cursor.close()
+    mydb.close()
+    client = TelegramClient(str(uniq_key), api_id, api_hash) 
+    client.connect()
+    client.send_code_request('+'+(params["phone"]))
+    time.sleep(60)
+    client.disconnect() 
+    return "200"
 
 # получаем код и выполняем вход
 @app.route('/auth_code', methods=['POST'])
@@ -98,17 +98,24 @@ def auth_code():
     mydb.commit()
     cursor.close()
     mydb.close()
+    login(uniq_key,record[0],code,record[1])
+    
+async def login(uniq_key1, phone1, code1, password1):
+    phone = phone1
+    code = code1
+    uniq_key = uniq_key1
+    password = password1
     client = TelegramClient(str(uniq_key), api_id, api_hash) 
-    client.start()
+    client.connect()
     try:
-      client.sign_in(record[0], code)
+      client.sign_in(phone, code)
       return "200"
     except SessionPasswordNeededError:
-      client.sign_in(record[1]) # need to write additional function for password retrieving
+      client.sign_in(password)
       return "200"
-    time.sleep(60)
     client.disconnect() 
     
+
 def api():
     app.run(port=1234,host='0.0.0.0')
     
