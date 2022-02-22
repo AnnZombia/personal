@@ -38,7 +38,7 @@ def auth_init():
   mydb.commit()
   cursor.close()
   mydb.close()
-  if record = None:
+  if record == None:
     return "200"
   else:
     return "500"
