@@ -16,6 +16,7 @@ api_hash = 'f4c93d55681e17b14d516e8f5571e4cd'
 
 def main():
     global client
+    global loop
     app.run(port=1234,host='0.0.0.0')
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
