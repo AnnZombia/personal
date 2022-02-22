@@ -101,8 +101,8 @@ def auth_code():
     record = cursor.fetchone()
     cursor.close()
     mydb.close()
-    phone = '+'+record[0]
-    password = record[1]
+    phone = '+'+str(record[0])
+    password = str(record[1])
     client = TelegramClient(str(uniq_key), api_id, api_hash, loop=loop) 
     client.connect()
     try:
