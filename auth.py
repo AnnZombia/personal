@@ -1,4 +1,5 @@
 import mysql.connector
+import time
 from telethon.errors import SessionPasswordNeededError
 from telethon.sync import TelegramClient
 from telethon.tl.types import InputPeerUser, InputPeerChannel
@@ -68,7 +69,10 @@ def auth_phone():
   cursor.close()
   mydb.close()
   client = TelegramClient(str(uniq_key), api_id, api_hash) 
+  client.start()
   client.send_code_request('+'+(params["phone"]))
+  time.sleep(60)
+  client.disconnect() 
   return "200"
 
 # получаем код и выполняем вход
@@ -94,13 +98,17 @@ def auth_code():
     mydb.commit()
     cursor.close()
     mydb.close()
+    client = TelegramClient(str(uniq_key), api_id, api_hash) 
+    client.start()
     try:
       client.sign_in(record[0], code)
       return "200"
     except SessionPasswordNeededError:
       client.sign_in(record[1]) # need to write additional function for password retrieving
       return "200"
-
+    time.sleep(60)
+    client.disconnect() 
+    
 def api():
     app.run(port=1234,host='0.0.0.0')
     
