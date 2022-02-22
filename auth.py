@@ -33,7 +33,7 @@ def auth_init():
     get_warnings = True
     )
   cursor = mydb.cursor()
-  cursor.execute("SELECT * FROM auth WHERE uniq_key = %s", (uniq_key,))
+  cursor.execute("SELECT * FROM auth WHERE uniq = %s", (uniq_key,))
   record = cursor.fetchone()
   mydb.commit()
   cursor.close()
