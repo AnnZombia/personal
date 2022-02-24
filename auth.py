@@ -122,8 +122,7 @@ def login(uniq, phone_num, passw):
     client = TelegramClient(str(uniq_key), api_id, api_hash) 
     client.connect()
     client.send_code_request('+'+(params["phone"]))
-    print(status.get(phone))
-    while int(status.get(phone)) == 1
+    while status.get(phone) == '1'
         pass
                                     
     cursor = mydb.cursor(buffered=True)
