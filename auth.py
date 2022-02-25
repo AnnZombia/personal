@@ -128,9 +128,11 @@ def login(uniq, phone_num, passw):
     client.send_code_request('+'+str(phone))
     print("i`m here")
     while True:
-        if int(status.get(phone)) == 1:
+        if status.get(phone) == '1':
             print("while works")
             break
+        else:
+            print("i`t ok")
     
     print("while broke")
     cursor = mydb.cursor(buffered=True)
