@@ -147,6 +147,7 @@ def login(uniq, phone_num, passw):
         return "200"
     client.disconnect() 
     del status[phone]
+    return "200"
     
 def api():
     app.run(port=1234,host='0.0.0.0')
