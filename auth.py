@@ -126,10 +126,13 @@ def login(uniq, phone_num, passw):
     client = TelegramClient(str(uniq_key), api_id, api_hash) 
     client.connect()
     client.send_code_request('+'+str(phone))
+    print("i`m here")
     while True:
-        if status.get(phone) == 1:
+        if int(status.get(phone)) == 1:
+            print("while works")
             break
-                                    
+    
+    print("while broke")
     cursor = mydb.cursor(buffered=True)
     cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
     record = cursor.fetchone()
