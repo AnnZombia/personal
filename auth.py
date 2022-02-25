@@ -109,7 +109,7 @@ def auth_code():
     mydb.close()
     phone = '+'+str(record[0])
     status.update(phone=1)
-    print("DICTIONARY "+status)
+    print(status)
     return "200"
     
                                     
