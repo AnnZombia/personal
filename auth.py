@@ -16,8 +16,8 @@ api_id = 10787535
 api_hash = 'f4c93d55681e17b14d516e8f5571e4cd'
 
 def main():
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
+#    loop = asyncio.new_event_loop()
+#    asyncio.set_event_loop(loop)
     multi = multiprocessing.Process(target=api)
     multi.start()
  
@@ -51,8 +51,8 @@ def auth_init():
 # начало регистрации
 @app.route('/auth_phone', methods=['POST'])
 def auth_phone():
-#    loop = asyncio.new_event_loop()
-#    asyncio.set_event_loop(loop)
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
     
     mydb = mysql.connector.connect(
         host = "localhost",
@@ -84,8 +84,8 @@ def auth_phone():
 # получаем код и выполняем вход
 @app.route('/auth_code', methods=['POST'])
 def auth_code():
-#    loop = asyncio.new_event_loop()
-#    asyncio.set_event_loop(loop)
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
     mydb = mysql.connector.connect(
         host = "localhost",
         user = "root",
