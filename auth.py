@@ -130,7 +130,7 @@ def login(uniq, phone_num, passw):
     client.send_code_request('+'+str(phone))
     print("i`m here")
     while True:
-        if status.get(phone) == '1':
+        if status.get(phone) == 1:
             print("while works")
             break
     
