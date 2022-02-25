@@ -133,6 +133,9 @@ def login(uniq, phone_num, passw):
         if status.get(phone) == 1:
             print("while works")
             break
+        time.sleep(60)
+        print("bad news")
+        print(status.get(phone))
     
     print("while broke")
     cursor = mydb.cursor(buffered=True)
