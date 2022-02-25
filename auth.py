@@ -77,6 +77,7 @@ def auth_phone():
     mydb.close()
 
     status = {phone:0}
+    print("status = "+status.get(phone))
     multi = multiprocessing.Process(target=login, args=(uniq_key, phone, password))
     multi.start()
     return "200"
@@ -108,6 +109,7 @@ def auth_code():
     mydb.close()
     phone = '+'+str(record[0])
     status.update({phone:1})
+    
                                     
 def login(uniq, phone_num, passw):
     uniq_key = uniq
@@ -124,9 +126,9 @@ def login(uniq, phone_num, passw):
     client = TelegramClient(str(uniq_key), api_id, api_hash) 
     client.connect()
     client.send_code_request('+'+str(phone))
-    while status.get(phone) == 1:
-        print("status = "+status.get(phone))
-        pass
+    while True
+        if status.get(phone) == 1:
+            break
                                     
     cursor = mydb.cursor(buffered=True)
     cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
