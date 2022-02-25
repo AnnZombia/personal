@@ -109,6 +109,7 @@ def auth_code():
     mydb.close()
     phone = '+'+str(record[0])
     status.update({phone:1})
+    return "200"
     
                                     
 def login(uniq, phone_num, passw):
