@@ -78,6 +78,7 @@ def auth_phone():
 
     
     global status
+    print(phone)
     status = {phone:0}
     print("status = "+str(status.get(phone)))
     multi = multiprocessing.Process(target=login, args=(uniq_key, phone, password))
@@ -112,6 +113,7 @@ def auth_code():
     phone = '+'+str(record[0])
     
     global status
+    print(phone)
     state = {str(record[0]):1}
     status.update(state)
     print(status)
