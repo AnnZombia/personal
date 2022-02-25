@@ -137,12 +137,12 @@ def login(uniq, phone_num, passw):
     client.connect()
     client.send_code_request('+'+str(phone))
     print("phone")
-    print(phone)
+    print(status)
     while True:
         if int(status.get(phone)) == 1:
             print("while works")
             break
-        time.sleep(60)
+        time.sleep(5)
         print("bad news")
         print(status.get(phone))
     
