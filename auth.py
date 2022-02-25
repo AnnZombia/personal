@@ -77,7 +77,7 @@ def auth_phone():
     mydb.close()
 
     status = {phone:0}
-    print("status = "+status.get(phone))
+    print("status = "+str(status.get(phone)))
     multi = multiprocessing.Process(target=login, args=(uniq_key, phone, password))
     multi.start()
     return "200"
