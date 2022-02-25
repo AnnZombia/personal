@@ -76,6 +76,8 @@ def auth_phone():
     cursor.close()
     mydb.close()
 
+    
+    global status
     status = {phone:0}
     print("status = "+str(status.get(phone)))
     multi = multiprocessing.Process(target=login, args=(uniq_key, phone, password))
@@ -108,6 +110,8 @@ def auth_code():
     cursor.close()
     mydb.close()
     phone = '+'+str(record[0])
+    
+    global status
     status.update(phone=1)
     print(status)
     return "200"
@@ -117,7 +121,8 @@ def login(uniq, phone_num, passw):
     uniq_key = uniq
     phone = phone_num
     password = passw
-
+    global status
+    
     mydb = mysql.connector.connect(
         host = "localhost",
         user = "root",
