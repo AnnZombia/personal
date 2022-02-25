@@ -112,7 +112,7 @@ def auth_code():
     phone = '+'+str(record[0])
     
     global status
-    status.update(phone:1)
+    status.update(%d:1, (phone,))
     print(status)
     return "200"
     
