@@ -144,6 +144,7 @@ def login(uniq, phone_num, passw):
             print("while works")
             break
         time.sleep(5)
+        print(status)
         print("bad news")
         print(status.get(phone))
     
