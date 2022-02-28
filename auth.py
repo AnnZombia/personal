@@ -80,8 +80,8 @@ def auth_phone():
     print(phone)
     status = {phone:0}
     print("status = "+str(status.get(phone)))
-    multi = multiprocessing.Process(target=login, args=(uniq_key, phone, password))
-    multi.start()
+    thread2 = threading.Thread(target=login, args=(uniq_key, phone, password))
+    thread2.start()
     return "200"
 
 # получаем код и выполняем вход
