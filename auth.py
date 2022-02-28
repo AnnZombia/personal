@@ -89,6 +89,7 @@ def auth_phone():
 def auth_code():
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
+    
     mydb = mysql.connector.connect(
         host = "localhost",
         user = "root",
@@ -121,6 +122,10 @@ def auth_code():
     
                                     
 def login(uniq, phone_num, passw):
+    
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    
     uniq_key = uniq
     phone = phone_num
     password = passw
