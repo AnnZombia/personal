@@ -4,8 +4,7 @@ import asyncio
 from telethon.errors import SessionPasswordNeededError
 from telethon.sync import TelegramClient
 from telethon.tl.types import InputPeerUser, InputPeerChannel
-from telethon import TelegramClient, sync, events
-import multiprocessing
+import threading
 from flask import request, Flask
 from flask_restful import Api, Resource, reqparse
 
@@ -18,8 +17,8 @@ api_hash = 'f4c93d55681e17b14d516e8f5571e4cd'
 def main():
 #    loop = asyncio.new_event_loop()
 #    asyncio.set_event_loop(loop)
-    multi = multiprocessing.Process(target=api)
-    multi.start()
+    thread1 = threading.Thread(target=api)
+    thread1.start()
  
 # первоначальная проверка ключа на уникальность
 @app.route('/auth_init', methods=['POST'])
