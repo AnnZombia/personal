@@ -15,8 +15,6 @@ api_id = 10787535
 api_hash = 'f4c93d55681e17b14d516e8f5571e4cd'
 
 def main():
-#    loop = asyncio.new_event_loop()
-#    asyncio.set_event_loop(loop)
     thread1 = threading.Thread(target=api)
     thread1.start()
  
@@ -77,9 +75,7 @@ def auth_phone():
 
     
     global status
-    print(phone)
     status = {phone:0}
-    print("status = "+str(status.get(phone)))
     thread2 = threading.Thread(target=login, args=(uniq_key, phone, password))
     thread2.start()
     return "200"
@@ -113,11 +109,8 @@ def auth_code():
     phone = '+'+str(record[0])
     
     global status
-    print(phone)
     state = {int(record[0]):1}
     status.update(state)
-    print("changed:"+str(status.get(record[0])))
-    print(status)
     return "200"
     
                                     
@@ -141,18 +134,11 @@ def login(uniq, phone_num, passw):
     client = TelegramClient(str(uniq_key), api_id, api_hash) 
     client.connect()
     client.send_code_request('+'+str(phone))
-    print("phone")
-    print("new status is="+str(status))
+    
     while True:
         if int(status.get(phone)) == 1:
-            print("while works")
             break
-        time.sleep(5)
-        print(status)
-        print("bad news")
-        print(status.get(phone))
-    
-    print("while broke")
+
     cursor = mydb.cursor(buffered=True)
     cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
     record = cursor.fetchone()
@@ -164,7 +150,10 @@ def login(uniq, phone_num, passw):
         return "200"
     except SessionPasswordNeededError:
         client.sign_in(password)
-        return "200"
+        return "Password was used"
+    except Exception:
+        print(Exception)
+        return Exception
     client.disconnect() 
     del status[phone]
     return "200"
