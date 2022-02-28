@@ -133,7 +133,6 @@ def login(uniq, phone_num, passw):
                     
     client = TelegramClient(str(uniq_key), api_id, api_hash) 
     client.connect()
-    print('+'+str(phone))
     try:
         client.send_code_request('+'+str(phone))
     except Exception as ex:
