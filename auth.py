@@ -136,7 +136,7 @@ def login(uniq, phone_num, passw):
     print('+'+str(phone))
     client.send_code_request('+'+str(phone))
     while True:
-        if int(status.get(phone)) == 1:
+        if status.get(phone) == 1:
             break
 
     cursor = mydb.cursor(buffered=True)
