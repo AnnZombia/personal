@@ -116,7 +116,7 @@ def auth_code():
     print(phone)
     state = {int(record[0]):1}
     status.update(state)
-    print("changed:"+str(status.get(phone)))
+    print("changed:"+str(status.get(record[0])))
     print(status)
     return "200"
     
