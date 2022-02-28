@@ -44,6 +44,7 @@ def send_message():
     except Exception as ex:
         print(ex)
     client.disconnect()
+    return "200"
 
         
 def main():
