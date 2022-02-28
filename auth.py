@@ -136,8 +136,8 @@ def login(uniq, phone_num, passw):
     print('+'+str(phone))
     try:
         client.send_code_request('+'+str(phone))
-    except Exception:
-        print(Exception)
+    except Exception as ex:
+        print(ex)
     while True:
         if status.get(phone) == 1:
             break
