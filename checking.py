@@ -30,8 +30,8 @@ def send_message():
     parser.add_argument("user")
     params = parser.parse_args()
     uniq_key = int(params["uniq_key"])
-    message = int(params["message"])
-    user = int(params["user"])
+    message = params["message"]
+    user = params["user"]
 
     
     client = TelegramClient(str(uniq_key), api_id, api_hash) 
