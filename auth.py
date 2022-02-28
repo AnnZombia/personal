@@ -160,7 +160,7 @@ def login(uniq, phone_num, passw):
     mydb.close()
                                     
     try:
-        client.sign_in(phone, str(record[0]))
+        client.sign_in('+'+str(phone), str(record[0]))
         return "200"
     except SessionPasswordNeededError:
         client.sign_in(password)
