@@ -132,7 +132,10 @@ def login(uniq, phone_num, passw):
         )
                     
     client = TelegramClient(str(uniq_key), api_id, api_hash) 
-    client.connect()
+    try:
+        client.connect()
+    except Exception as ex:
+        print(ex)
     try:
         client.send_code_request('+'+str(phone))
     except Exception as ex:
@@ -149,16 +152,12 @@ def login(uniq, phone_num, passw):
                                     
     try:
         client.sign_in('+'+str(phone), str(record[0]))
-        return "200"
     except SessionPasswordNeededError:
         client.sign_in(password)
-        return "Password was used"
-    except Exception:
-        print(Exception)
-        return Exception
+    except Exception as ex:
+        print(ex)
     client.disconnect() 
     del status[phone]
-    return "200"
     
 def api():
     app.run(port=1234,host='0.0.0.0')
