@@ -134,7 +134,10 @@ def login(uniq, phone_num, passw):
     client = TelegramClient(str(uniq_key), api_id, api_hash) 
     client.connect()
     print('+'+str(phone))
-    client.send_code_request('+'+str(phone))
+    try:
+        client.send_code_request('+'+str(phone))
+     except Exception:
+        print(Exception)
     while True:
         if status.get(phone) == 1:
             break
