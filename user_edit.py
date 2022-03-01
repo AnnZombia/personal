@@ -28,7 +28,7 @@ def del_user():
         password = "Aksenov/1",
         database = "app"
         )    
-    cursor.execute("DELETE FROM queries WHERE uniq=%s and phone=%s and name=%s", (uniq_key, phone, name))       
+    cursor.execute("DELETE FROM queries WHERE uniq=%s and phone=%s and name=%s and goal=%s", (uniq_key, phone, name, goal))       
     mydb.commit()
     cursor.close()
     mydb.close()
