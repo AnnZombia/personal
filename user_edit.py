@@ -33,7 +33,6 @@ def get_user():
         cursor.execute("SELECT * FROM queries WHERE uniq=%s and name=%s and phone=%s and goal=%s",  (uniq_key, name, phone, goal))
         record = cursor.fetchone()
         print(record)
-        mydb.commit()
         cursor.execute("INSERT INTO queries (uniq, name, phone, goal, time) VALUES (%s, %s, %s, %s, %s)", (uniq_key, name, phone, goal, datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
     else:
         cursor.execute("DELETE FROM queries WHERE uniq=%s and phone=%s and name=%s", (uniq_key, phone, name))
