@@ -30,9 +30,9 @@ def get_user():
     
     # adding/deleting prey
     if goal != 'delete':
-        cursor.execute("INSERT INTO queries (uniq, prey_name, prey_phone, goal, time) VALUES (%s, %s, %s, %s, %s)", (uniq_key, prey_name, prey_phone, goal, datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+        cursor.execute("INSERT INTO queries (uniq, name, phone, goal, time) VALUES (%s, %s, %s, %s, %s)", (uniq_key, prey_name, prey_phone, goal, datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
     else:
-        cursor.execute("DELETE FROM queries WHERE uniq=%s and prey_phone=%s and prey_name=%s", (uniq_key, prey_phone, prey_name))
+        cursor.execute("DELETE FROM queries WHERE uniq=%s and phone=%s and name=%s", (uniq_key, prey_phone, prey_name))
                     
     mydb.commit()
     cursor.close()
