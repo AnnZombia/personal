@@ -37,7 +37,6 @@ def get_user():
     mydb.commit()
     cursor.close()
     mydb.close()
-    event.clear()
     return "200"
 
 def api():
