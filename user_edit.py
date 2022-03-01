@@ -20,7 +20,6 @@ def del_user():
     phone = params["phone"]
     name = params["name"]
     goal = params["goal"] 
-    cursor = mydb.cursor()
     
     mydb = mysql.connector.connect(
         host = "localhost",
@@ -28,6 +27,7 @@ def del_user():
         password = "Aksenov/1",
         database = "app"
         )    
+    cursor = mydb.cursor()
     cursor.execute("DELETE FROM queries WHERE uniq=%s and phone=%s and name=%s and goal=%s", (uniq_key, phone, name, goal))       
     mydb.commit()
     cursor.close()
