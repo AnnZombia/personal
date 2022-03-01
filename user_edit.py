@@ -23,20 +23,20 @@ def get_user():
     parser.add_argument("goal")
     params = parser.parse_args()
     uniq_key = int(params["uniq_key"])
-    prey_phone = params["phone"]
-    prey_name = params["name"]
+    phone = params["phone"]
+    name = params["name"]
     goal = params["goal"] 
     cursor = mydb.cursor()
     
     # adding/deleting prey
     if goal != 'delete':
-        cursor.execute("SELECT * FROM queries WHERE uniq=%s and name=%s and phone=%s and goal=%s",  (uniq, name, phone, goal))
+        cursor.execute("SELECT * FROM queries WHERE uniq=%s and name=%s and phone=%s and goal=%s",  (uniq_key, name, phone, goal))
         record = cursor.fetchone()
         print(record)
         mydb.commit()
-        cursor.execute("INSERT INTO queries (uniq, name, phone, goal, time) VALUES (%s, %s, %s, %s, %s)", (uniq, name, phone, goal, datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+        cursor.execute("INSERT INTO queries (uniq, name, phone, goal, time) VALUES (%s, %s, %s, %s, %s)", (uniq_key, name, phone, goal, datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
     else:
-        cursor.execute("DELETE FROM queries WHERE uniq=%s and phone=%s and name=%s", (uniq_key, prey_phone, prey_name))
+        cursor.execute("DELETE FROM queries WHERE uniq=%s and phone=%s and name=%s", (uniq_key, phone, name))
                     
     mydb.commit()
     cursor.close()
