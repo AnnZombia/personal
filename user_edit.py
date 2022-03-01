@@ -27,9 +27,9 @@ def get_user():
     parser.add_argument("goal")
     params = parser.parse_args()
     uniq_key = int(params["uniq_key"])
-    if params["phone"] != None:
+    if params["phone"] != 'None':
         prey_phone = int(params["phone"])
-    if params["name"] != None:
+    if params["name"] != 'None':
         prey_name = params["name"]
     goal = params["goal"] 
     cursor = mydb.cursor()
