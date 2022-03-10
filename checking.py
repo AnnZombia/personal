@@ -27,7 +27,7 @@ def main():
         print(record)
         print(record[0][0])
         for i in range(len(record)):
-            print(len(record))
+            print("len="+len(record))
             print(i)
             print(record[i][1])
             client = TelegramClient(str(record[i][0]), api_id, api_hash) 
