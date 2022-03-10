@@ -20,7 +20,7 @@ def main():
         cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()
         for i in range(len(record)):
-            print(record)
+            print(record[i][3])
         break
     
     
