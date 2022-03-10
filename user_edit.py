@@ -2,7 +2,6 @@ import datetime
 from telethon.tl.functions.users import GetFullUserRequest
 import mysql.connector
 import threading
-from multiprocessing import Process, Event
 from flask import request, Flask
 from flask_restful import Api, Resource, reqparse
 app = Flask(__name__)
