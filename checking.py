@@ -25,14 +25,20 @@ def main():
         for i in range(len(record)):
             client = TelegramClient(str(record[i][0]), api_id, api_hash) 
             try:
-                 client.connect()
+                client.connect()
             except Exception as ex:
-                 print(ex)
+                print(ex)
+            full = client(GetFullUserRequest(record[i][1]))
             if record[i][3] == 'block':
-                 full = client(GetFullUserRequest(record[i][1]))
-                 if full.user.status != None:
-                      cursor.execute("INSERT INTO blocked (uniq, name, phone, time) VALUES (%s, %s, %s, %s)", (record[i][0], record[i][1], record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
-                      print(record[i][1]+"unblocke")
+                if full.user.status != None:
+                    print(full.user.status)
+                    cursor.execute("INSERT INTO blocked (uniq, name, phone, time) VALUES (%s, %s, %s, %s)", (record[i][0], record[i][1], record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+  #          if record[i][3] == 'status':
+  #              if full.user.status != :
+                        
+            
+            
+            
             client.disconnect()
         break
     
