@@ -5,7 +5,10 @@ import threading
 from telethon.errors import SessionPasswordNeededError
 from telethon.sync import TelegramClient
 from telethon.tl.types import InputPeerUser, InputPeerChannel
+from telethon import TelegramClient, events, sync
 
+api_id = 10787535
+api_hash = 'f4c93d55681e17b14d516e8f5571e4cd'
 
 def main():
     mydb = mysql.connector.connect(
@@ -20,7 +23,18 @@ def main():
         cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()
         for i in range(len(record)):
-            print(record[i][3])
+            if record[i][5] == 'block':
+                 client = TelegramClient(record[i][1]), api_id, api_hash) 
+                 try:
+                      client.connect()
+                 except Exception as ex:
+                      print(ex)
+                 full = client(GetFullUserRequest(record[i][2])))
+                 if full.user.status != None:
+                      print("unblocked")
+                 else: 
+                      print("blocked")                     
+                 client.disconnect()
         break
     
     
