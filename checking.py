@@ -6,6 +6,7 @@ from telethon.errors import SessionPasswordNeededError
 from telethon.sync import TelegramClient
 from telethon.tl.types import InputPeerUser, InputPeerChannel
 from telethon import TelegramClient, events, sync
+from telethon.tl.types import UserStatusOnline, UserStatusOffline
 
 status = None
 api_id = 10787535
