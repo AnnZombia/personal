@@ -31,7 +31,7 @@ def main():
             full = client(GetFullUserRequest(record[i][1]))
             if record[i][3] == 'block':
                 if full.user.status != None:
-                    print(full.user.status)
+                    print(full)
                     cursor.execute("INSERT INTO blocked (uniq, name, phone, time) VALUES (%s, %s, %s, %s)", (record[i][0], record[i][1], record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
   #          if record[i][3] == 'status':
   #              if full.user.status != :
