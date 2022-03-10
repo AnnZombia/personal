@@ -24,9 +24,11 @@ def main():
     while True:
         cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()
-        for i in range(len(record)-1):
+        print(record)
+        print(record[0][0])
+        for i in range(len(record)):
             print(record[i][1])
-            client = TelegramClient(str(record[0][0]), api_id, api_hash) 
+            client = TelegramClient(str(record[i][0]), api_id, api_hash) 
             try:
                 client.connect()
             except Exception as ex:
