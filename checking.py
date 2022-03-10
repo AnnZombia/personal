@@ -35,6 +35,7 @@ def main():
             client.disconnect()
         break
     
+    
     mydb.commit()
     cursor.close()
     mydb.close()
