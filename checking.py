@@ -23,19 +23,17 @@ def main():
         cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()
         for i in range(len(record)):
-            print(record[i][4])
+            client = TelegramClient(str(record[i][1]), api_id, api_hash) 
+            try:
+                 client.connect()
+            except Exception as ex:
+                 print(ex)
             if record[i][4] == 'block':
-                 client = TelegramClient(str(record[i][1]), api_id, api_hash) 
-                 try:
-                      client.connect()
-                 except Exception as ex:
-                      print(ex)
                  full = client(GetFullUserRequest(record[i][2]))
                  if full.user.status != None:
-                      print("unblocked")
-                 else: 
-                      print("blocked")                     
-                 client.disconnect()
+                      cursor.execute("INSERT INTO blocked (uniq, name, phone, time) VALUES (%s, %s, %s, %s)", (record[i][1]), record[i][2]), record[i][3]), datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+                       
+            client.disconnect()
         break
     
     
