@@ -43,12 +43,12 @@ def main():
             if isinstance(full.user.status, UserStatusOffline):
                 if last_status == None or last_status == 'Online':
                     cursor.execute("INSERT INTO status (uniq, name, phone, status, time) VALUES (%s, %s, %s, %s, %s)", (record[i][0], record[i][1], 'Offline', record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
-                elseif last_status == 'Offline':
+                elif last_status == 'Offline':
                     continue
             if isinstance(full.user.status, UserStatusOnline):
                 if last_status == None or last_status == 'Offline':
                     cursor.execute("INSERT INTO status (uniq, name, phone, status, time) VALUES (%s, %s, %s, %s, %s)", (record[i][0], record[i][1], 'Online', record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
-                elseif last_status == 'Online':
+                elif last_status == 'Online':
                     continue                           
             
             client.disconnect()
