@@ -23,6 +23,7 @@ def main():
         cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()
         for i in range(len(record)):
+            print(record[i])
             if record[i][5] == 'block':
                  client = TelegramClient(record[i][1], api_id, api_hash) 
                  try:
