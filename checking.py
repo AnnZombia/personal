@@ -21,6 +21,7 @@ def main():
         record = cursor.fetchall()
         for i in range(len(record)):
             print(record[i])
+            print(record[i, 2])
         break
     
     
