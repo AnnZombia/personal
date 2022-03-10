@@ -29,7 +29,7 @@ def main():
                       client.connect()
                  except Exception as ex:
                       print(ex)
-                 full = client(GetFullUserRequest(record[i][2])))
+                 full = client(GetFullUserRequest(record[i][2]))
                  if full.user.status != None:
                       print("unblocked")
                  else: 
