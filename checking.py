@@ -17,7 +17,7 @@ def main():
     cursor = mydb.cursor()
     
     while True:
-        cursor.execute("SELECT * FROM queries WHERE uniq=%s and name=%s and phone=%s and goal=%s",  (uniq_key, name, phone, goal))
+        cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()
         for i in range(len(record)):
             print(record(i))
