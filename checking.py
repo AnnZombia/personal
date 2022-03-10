@@ -24,7 +24,7 @@ def main():
         record = cursor.fetchall()
         for i in range(len(record)):
             if record[i][5] == 'block':
-                 client = TelegramClient(record[i][1]), api_id, api_hash) 
+                 client = TelegramClient(record[i][1], api_id, api_hash) 
                  try:
                       client.connect()
                  except Exception as ex:
