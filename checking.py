@@ -28,7 +28,7 @@ def main():
                  client.connect()
             except Exception as ex:
                  print(ex)
-            if record[i][4] == 'block':
+            if record[i][3] == 'block':
                  full = client(GetFullUserRequest(record[i][1]))
                  if full.user.status != None:
                       cursor.execute("INSERT INTO blocked (uniq, name, phone, time) VALUES (%s, %s, %s, %s)", (record[i][0], record[i][1], record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
