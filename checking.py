@@ -14,17 +14,18 @@ api_id = 10787535
 api_hash = 'f4c93d55681e17b14d516e8f5571e4cd'
 
 def main():
-    mydb = mysql.connector.connect(
-        host = "localhost",
-        user = "root",
-        password = "Aksenov/1",
-        database = "app"
-        )
-    cursor = mydb.cursor()
     
     while True:
+        mydb = mysql.connector.connect(
+            host = "localhost",
+            user = "root",
+            password = "Aksenov/1",
+            database = "app"
+            )
+    cursor = mydb.cursor()
         cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()
+        
         for i in range(len(record)):
             client = TelegramClient(str(record[i][0]), api_id, api_hash) 
             try:
@@ -61,10 +62,10 @@ def main():
                         continue                           
             
             client.disconnect()
+            mydb.commit()
+            cursor.close()
+            mydb.close()
             time.sleep(5)
-    
-    mydb.commit()
-    cursor.close()
-    mydb.close()
+   
     
 main()
