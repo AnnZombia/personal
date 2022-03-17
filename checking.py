@@ -36,23 +36,27 @@ def main():
                 if full.user.status != None:
                     print("unblocked!")
                     cursor.execute("INSERT INTO blocked (uniq, name, phone, time) VALUES (%s, %s, %s, %s)", (record[i][0], record[i][1], record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+                    mydb.commit()
             if record[i][3] == 'status':
                 cursor.execute("SELECT * FROM status WHERE uniq=%s and name=%s and phone=%s",  (record[i][0], record[i][1], record[i][2]))
+                mydb.commit()
                 record1 = cursor.fetchall()
                 if len(record1) != 0:
                     last_status = record1[len(record1)-1][3]
                     print(last_status)
                 else:
                     cursor.execute("INSERT INTO status (uniq, name, status, phone, time) VALUES (%s, %s, %s, %s, %s)", (record[i][0], record[i][1], 'Offline', record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
-                
+                    mydb.commit()
                 if isinstance(full.user.status, UserStatusOffline):
                     if last_status == None or last_status == 'Online':
                         cursor.execute("INSERT INTO status (uniq, name, status, phone, time) VALUES (%s, %s, %s, %s, %s)", (record[i][0], record[i][1], 'Offline', record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+                        mydb.commit()
                     elif last_status == 'Offline':
                         continue
                 if isinstance(full.user.status, UserStatusOnline):
                     if last_status == None or last_status == 'Offline':
                         cursor.execute("INSERT INTO status (uniq, name, status, phone, time) VALUES (%s, %s, %s, %s, %s)", (record[i][0], record[i][1], 'Online', record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+                        mydb.commit()
                     elif last_status == 'Online':
                         continue                           
             
