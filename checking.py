@@ -22,7 +22,7 @@ def main():
             password = "Aksenov/1",
             database = "app"
             )
-    cursor = mydb.cursor()
+        cursor = mydb.cursor()
         cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()
         
