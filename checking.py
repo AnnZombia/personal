@@ -32,7 +32,6 @@ def main():
             except Exception as ex:
                 print(ex)
             full = client(GetFullUserRequest(record[i][1]))
-            print(full)
             if record[i][3] == 'block':
                 if full.user.status != None:
                     print("unblocked!")
