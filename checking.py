@@ -22,6 +22,7 @@ def main():
     cursor = mydb.cursor()
     
     while True:
+        global record
         cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()
         for i in range(len(record)):
