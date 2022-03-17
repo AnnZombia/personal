@@ -22,7 +22,6 @@ def main():
     cursor = mydb.cursor()
     
     while True:
-        global record
         cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()
         for i in range(len(record)):
@@ -42,9 +41,9 @@ def main():
                     cursor.execute("INSERT INTO blocked (uniq, name, phone, time) VALUES (%s, %s, %s, %s)", (record[i][0], record[i][1], record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
             if record[i][3] == 'status':
                 cursor.execute("SELECT * FROM status WHERE uniq=%s and name=%s and phone=%s",  (record[i][0], record[i][1], record[i][2]))
-                record = cursor.fetchall()
-                if len(record) != 0:
-                    last_status = record[len(record)-1][3]
+                record1 = cursor.fetchall()
+                if len(record1) != 0:
+                    last_status = record1[len(record1)-1][3]
                     print(last_status)
                 
                 if isinstance(full.user.status, UserStatusOffline):
