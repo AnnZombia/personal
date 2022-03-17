@@ -42,6 +42,8 @@ def main():
                 if len(record1) != 0:
                     last_status = record1[len(record1)-1][3]
                     print(last_status)
+                else:
+                    cursor.execute("INSERT INTO status (uniq, name, phone, status, time) VALUES (%s, %s, %s, %s, %s)", (record[i][0], record[i][1], 'Offline', record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
                 
                 if isinstance(full.user.status, UserStatusOffline):
                     if last_status == None or last_status == 'Online':
