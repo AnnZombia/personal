@@ -25,9 +25,6 @@ def main():
         cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()
         for i in range(len(record)):
-            print("len="+str(len(record)))
-            print("i="+str(i))
-            print(record[i][1])
             client = TelegramClient(str(record[i][0]), api_id, api_hash) 
             try:
                 client.connect()
@@ -37,7 +34,7 @@ def main():
             print(full)
             if record[i][3] == 'block':
                 if full.user.status != None:
-                    print(full)
+                    print("unblocked!")
                     cursor.execute("INSERT INTO blocked (uniq, name, phone, time) VALUES (%s, %s, %s, %s)", (record[i][0], record[i][1], record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
             if record[i][3] == 'status':
                 cursor.execute("SELECT * FROM status WHERE uniq=%s and name=%s and phone=%s",  (record[i][0], record[i][1], record[i][2]))
@@ -58,8 +55,7 @@ def main():
                         continue                           
             
             client.disconnect()
-        break
-    
+               time.sleep(5)
     
     mydb.commit()
     cursor.close()
