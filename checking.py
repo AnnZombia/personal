@@ -24,11 +24,9 @@ def main():
     while True:
         cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()
-        print(record)
-        print(record[0][0])
         for i in range(len(record)):
             print("len="+str(len(record)))
-            print(i)
+            print("i="+str(i))
             print(record[i][1])
             client = TelegramClient(str(record[i][0]), api_id, api_hash) 
             try:
