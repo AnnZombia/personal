@@ -40,10 +40,11 @@ def main():
                     mydb.commit()
                     print("done")
                     print(record[i][0], record[i][1], record[i][2])
-                    if record[i][2] != 'None':
-                        cursor.execute("DELETE FROM queries WHERE uniq=%s and name=%s and phone=%s and goal=%s",  (record[i][0], record[i][1], record[i][2], 'block'))
-                    else:
+                    if record[i][2] == 'None':
                         cursor.execute("DELETE FROM queries WHERE uniq=%s and name=%s and goal=%s",  (record[i][0], record[i][1], 'block'))
+                    esle:
+                        cursor.execute("DELETE FROM queries WHERE uniq=%s and name=%s and phone=%s and goal=%s",  (record[i][0], record[i][1], record[i][2], 'block'))
+                        
                     mydb.commit()
             if record[i][3] == 'status':
                 cursor.execute("SELECT * FROM status WHERE uniq=%s and name=%s and phone=%s",  (record[i][0], record[i][1], record[i][2]))
