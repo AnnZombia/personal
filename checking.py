@@ -33,6 +33,8 @@ def main():
             client = TelegramClient(str(record[i][0]), api_id, api_hash) 
             try:
                 client.connect()
+                print("CONNECT")
+
             except Exception as ex:
                 print("ERERRRRROR")
                 print(ex)
@@ -84,7 +86,9 @@ def main():
                         continue                           
             try:
                 client.disconnect()
+                print("DISCONNECT")
             except Exception as ex:
+                print("DISCONNECT ERRROR")
                 print(ex)
                 
         cursor.close()
