@@ -59,8 +59,8 @@ def main():
                         mydb.commit()
                     elif last_status == 'Online':
                         continue                           
-            
-        client.disconnect()
+            client.disconnect()
+
         cursor.close()
         mydb.close()
         time.sleep(5)
