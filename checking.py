@@ -81,8 +81,11 @@ def main():
                         mydb.commit()
                     elif last_status == 'Online':
                         continue                           
-            client.disconnect()
-
+            try:
+                client.disconnect()
+            except Exception as ex:
+                print(ex)
+                
         cursor.close()
         mydb.close()
         time.sleep(5)
