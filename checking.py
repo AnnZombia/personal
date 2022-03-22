@@ -63,9 +63,8 @@ def main():
                 if len(record1) != 0:
                     last_status = record1[len(record1)-1][3]
                 else:
-                    cursor.execute("INSERT INTO status (uniq, name, status, phone, time) VALUES (%s, %s, %s, %s, %s)", (record[i][0], record[i][1], 'Offline', record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
-                    mydb.commit()
-
+                    last_status = 'Offline'
+                    
 # если текущий статус Offline, и это отличается от последнего - пишем в БД и мобновляем значение последнего статуса
                 if isinstance(full.user.status, UserStatusOffline):
                     if last_status == None or last_status == 'Online':
