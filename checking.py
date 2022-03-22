@@ -61,7 +61,6 @@ def main():
                         continue                           
             
             client.disconnect()
-            mydb.commit()
             cursor.close()
             mydb.close()
             time.sleep(5)
