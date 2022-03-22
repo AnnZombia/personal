@@ -60,10 +60,10 @@ def main():
                     elif last_status == 'Online':
                         continue                           
             
-            client.disconnect()
-            cursor.close()
-            mydb.close()
-            time.sleep(5)
+        client.disconnect()
+        cursor.close()
+        mydb.close()
+        time.sleep(5)
    
     
 main()
