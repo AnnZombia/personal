@@ -41,7 +41,7 @@ def main():
                     print("done")
                     print(record[i][0], record[i][1], record[i][2])
                     if record[i][2] != None:
-                        cursor.execute("DELETE FROM queries WHERE uniq=%s and name=%s and phone=%s and goal=%s",  (record[i][0], record[i][1], record[i][2]), 'block'))
+                        cursor.execute("DELETE FROM queries WHERE uniq=%s and name=%s and phone=%s and goal=%s",  (record[i][0], record[i][1], record[i][2], 'block'))
                     else:
                         cursor.execute("DELETE FROM queries WHERE uniq=%s and name=%s and phone=%s and goal=%s",  (record[i][0], record[i][1], '', 'block'))
                     mydb.commit()
