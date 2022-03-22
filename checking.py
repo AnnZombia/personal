@@ -90,7 +90,7 @@ def main():
             except Exception as ex:
                 print("DISCONNECT ERRROR")
                 print(ex)
-            time.sleep(1)    
+            time.sleep(2)    
         cursor.close()
         mydb.close()
         time.sleep(5)
