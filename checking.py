@@ -65,7 +65,7 @@ def main():
                 else:
                     last_status = 'Offline'
                     
-# если текущий статус Offline, и это отличается от последнего - пишем в БД и мобновляем значение последнего статуса
+# если текущий статус Offline, и это отличается от последнего - пишем в БД и обновляем значение последнего статуса
                 if isinstance(full.user.status, UserStatusOffline):
                     if last_status == None or last_status == 'Online':
                         cursor.execute("INSERT INTO status (uniq, name, status, phone, time) VALUES (%s, %s, %s, %s, %s)", (record[i][0], record[i][1], 'Offline', record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
