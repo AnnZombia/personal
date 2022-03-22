@@ -34,6 +34,7 @@ def main():
             try:
                 client.connect()
             except Exception as ex:
+                print("ERERRRRROR")
                 print(ex)
             full = client(GetFullUserRequest(record[i][1]))
 
