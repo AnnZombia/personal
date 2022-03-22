@@ -38,6 +38,9 @@ def main():
                     print("unblocked!")
                     cursor.execute("INSERT INTO blocked (uniq, name, phone, time) VALUES (%s, %s, %s, %s)", (record[i][0], record[i][1], record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
                     mydb.commit()
+                    print("done")
+                    cursor.execute("DELETE * FROM queries WHERE uniq=%s and name=%s and phone=%s",  (record[i][0], record[i][1], record[i][2]))
+                    mydb.commit()
             if record[i][3] == 'status':
                 cursor.execute("SELECT * FROM status WHERE uniq=%s and name=%s and phone=%s",  (record[i][0], record[i][1], record[i][2]))
                 record1 = cursor.fetchall()
