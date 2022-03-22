@@ -40,7 +40,6 @@ def main():
                     mydb.commit()
             if record[i][3] == 'status':
                 cursor.execute("SELECT * FROM status WHERE uniq=%s and name=%s and phone=%s",  (record[i][0], record[i][1], record[i][2]))
-                mydb.commit()
                 record1 = cursor.fetchall()
                 if len(record1) != 0:
                     last_status = record1[len(record1)-1][3]
