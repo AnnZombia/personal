@@ -32,7 +32,7 @@ def main():
         for i in range(len(record)):
             client = TelegramClient(str(record[i][0]), api_id, api_hash) 
             try:
-                client.run_until_disconnected()
+                client.connect()
                 print("CONNECT")
 
             except Exception as ex:
