@@ -20,7 +20,8 @@ def main():
             host = "localhost",
             user = "root",
             password = "Aksenov/1",
-            database = "app"
+            database = "app",
+            timeout=10
             )
         cursor = mydb.cursor()
         cursor.execute("SELECT * FROM queries")
