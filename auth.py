@@ -143,7 +143,7 @@ def login(uniq, phone_num, passw):
         print("No!")
 
     try:
-        client.send_code_request('+'+str(phone), force_sms=force_sms)
+        client.send_code_request('+'+str(phone), force_sms=True)
     except Exception as ex:
         print(ex)
     while True:
