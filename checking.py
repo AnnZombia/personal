@@ -85,7 +85,7 @@ def main():
                     elif last_status == 'Online':
                         continue                           
             try:
-                client.close()
+#                client.close()
                 client.disconnect()
                 print("DISCONNECT")
             except Exception as ex:
