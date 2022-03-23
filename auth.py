@@ -106,6 +106,7 @@ def auth_code():
     record = cursor.fetchone()
     cursor.close()
     mydb.close()
+    print(str(record[0]))
     phone = '+'+str(record[0])
     
     global status
