@@ -139,7 +139,7 @@ def login(uniq, phone_num, passw):
         print(ex)
     if client.is_user_authorized():
         print("YES!")
-    esle:
+    else:
         print("No!")
 
     try:
