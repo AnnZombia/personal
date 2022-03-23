@@ -86,6 +86,7 @@ def main():
                         continue                           
             try:
                 client.disconnect()
+                client.log_out()
                 print("DISCONNECT")
             except Exception as ex:
                 print("DISCONNECT ERRROR")
