@@ -6,6 +6,7 @@ from telethon.sync import TelegramClient
 from telethon.tl.types import InputPeerUser, InputPeerChannel
 import threading
 from flask import request, Flask
+inport telethon.errors
 from flask_restful import Api, Resource, reqparse
 
 status = {}
