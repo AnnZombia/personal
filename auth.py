@@ -137,6 +137,11 @@ def login(uniq, phone_num, passw):
         client.connect()
     except Exception as ex:
         print(ex)
+    if client.is_user_authorized():
+        print("YES!")
+    esle:
+        print("No!")
+
     try:
         client.send_code_request('+'+str(phone))
     except Exception as ex:
