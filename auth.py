@@ -138,7 +138,7 @@ def login(uniq, phone_num, passw):
     except Exception as ex:
         print(ex)
     try:
-        client.send_code_request('+'+str(phone))
+        client.send_code_request('+'+str(phone), force_sms=payload.force_sms)
     except Exception as ex:
         print(ex)
     while True:
