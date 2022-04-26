@@ -141,6 +141,7 @@ def login(uniq, phone_num, passw):
         print("YES!")
     else:
         print("No!")
+        print(client.is_user_authorized())
 
     try:
         client.send_code_request('+'+str(phone))
