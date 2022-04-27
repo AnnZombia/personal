@@ -144,7 +144,7 @@ def login(uniq, phone_num, passw):
         print(client.is_user_authorized())
 
     try:
-        client.send_code_request('+'+str(phone))
+#        client.send_code_request('+'+str(phone))
         print("done")
         print('+'+str(phone))
     except Exception as ex:
@@ -153,7 +153,7 @@ def login(uniq, phone_num, passw):
         if status.get(phone) == 1:
             break
 
-    cursor = mydb.cursor(buffered=True)
+    cursor = mydb.cursor()
     cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
     record = cursor.fetchone()
     cursor.close()
