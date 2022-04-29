@@ -28,7 +28,9 @@ def main():
         cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()
         print(record)
-        print(record[i][0])
+        print(record[0][0])
+        print(record[1][0])        
+        print(record[2][0])       
         
  # для каждой проверки отдельно подключаемся и выполняем требуемый запрос
         for i in range(len(record)):
