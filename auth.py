@@ -35,7 +35,7 @@ def auth_init():
         get_warnings = True
         )
     
-    cursor = mydb.cursor()
+    cursor = mydb.cursor(buffered=True)
     cursor.execute("SELECT * FROM auth WHERE uniq = %s", (uniq_key,))
     record = cursor.fetchone()
     mydb.commit()
@@ -68,7 +68,7 @@ def auth_phone():
     phone = int(params["phone"])
     name = params["name"]
     password = params["password"]
-    cursor = mydb.cursor()
+    cursor = mydb.cursor(buffered=True)
     cursor.execute("INSERT INTO auth (name, phone, uniq, password) VALUES (%s, %s, %s, %s)", (name, phone, uniq_key, password))
     mydb.commit()
     cursor.close()
@@ -146,7 +146,7 @@ def login(uniq, phone_num, passw):
         if status.get(phone) == 1:
             break
 
-    cursor = mydb.cursor()
+    cursor = mydb.cursor(buffered=True)
     cursor.execute("SELECT code FROM auth WHERE uniq = %s", (uniq_key,))
     record = cursor.fetchone()
     cursor.close()
