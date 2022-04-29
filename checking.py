@@ -27,6 +27,7 @@ def main():
 # вытаскиваем список активных проверок
         cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()
+        print(record)
 
  # для каждой проверки отдельно подключаемся и выполняем требуемый запрос
         for i in range(len(record)):
@@ -35,7 +36,7 @@ def main():
                 client.connect()
             except Exception as ex:
                 print(ex)
-            full = client(GetFullUserRequest(record[i][1]))
+            full = await client(GetFullUserRequest(record[i][1]))
 
 # проверяем запрос на актуальность блокировки
             if record[i][3] == 'block':
