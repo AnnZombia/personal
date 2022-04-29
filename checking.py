@@ -22,7 +22,7 @@ def main():
             password = "Aksenov/1",
             database = "app"
             )
-        cursor = mydb.cursor()
+        cursor = mydb.cursor(buffered=True)
         
 # вытаскиваем список активных проверок
         cursor.execute("SELECT * FROM queries")
@@ -33,10 +33,7 @@ def main():
             client = TelegramClient(str(record[i][0]), api_id, api_hash) 
             try:
                 client.connect()
-                print("CONNECT")
-
             except Exception as ex:
-                print("ERERRRRROR")
                 print(ex)
             full = client(GetFullUserRequest(record[i][1]))
 
@@ -87,9 +84,7 @@ def main():
             try:
 #                client.close()
                 client.disconnect()
-                print("DISCONNECT")
             except Exception as ex:
-                print("DISCONNECT ERRROR")
                 print(ex)
             time.sleep(5)    
         cursor.close()
