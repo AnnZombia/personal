@@ -28,9 +28,11 @@ def main():
         cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()
         print(record)
-
+        print(record[i][0])
+        
  # для каждой проверки отдельно подключаемся и выполняем требуемый запрос
         for i in range(len(record)):
+            print(record[i][0])
             client = TelegramClient(str(record[i][0]), api_id, api_hash) 
             try:
                 client.connect()
