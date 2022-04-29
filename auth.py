@@ -152,13 +152,13 @@ def login(uniq, phone_num, passw):
     cursor.close()
     mydb.close()
                                     
-    try:
-        client.sign_in('+'+str(phone), str(record[0]))
-    except SessionPasswordNeededError:
-        client.sign_in(password)
-    except Exception as ex:
-        print(ex)
-    client.disconnect() 
+#    try:
+#        client.sign_in('+'+str(phone), str(record[0]))
+#    except SessionPasswordNeededError:
+#        client.sign_in(password)
+#    except Exception as ex:
+#        print(ex)
+#    client.disconnect() 
     del status[phone]
     
 def api():
