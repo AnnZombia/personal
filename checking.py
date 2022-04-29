@@ -42,7 +42,7 @@ def main():
                 print(is_user_authorized)
             except Exception as ex:
                 print(ex)
-            full = client(GetFullUserRequest(record[i][1]))
+#            full = client(GetFullUserRequest(record[i][1]))
 
 # проверяем запрос на актуальность блокировки
             if record[i][3] == 'block':
