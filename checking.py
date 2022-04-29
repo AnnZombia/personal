@@ -38,7 +38,7 @@ def main():
                 print(123)
             except Exception as ex:
                 print(ex)
-            full = await client(GetFullUserRequest(record[i][1]))
+            full = client(GetFullUserRequest(record[i][1]))
 
 # проверяем запрос на актуальность блокировки
             if record[i][3] == 'block':
