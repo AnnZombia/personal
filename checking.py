@@ -26,15 +26,10 @@ def main():
         
 # вытаскиваем список активных проверок
         cursor.execute("SELECT * FROM queries")
-        record = cursor.fetchall()
-        print(record)
-        print(record[0][0])
-        print(record[1][0])        
-        print(record[2][0])       
+        record = cursor.fetchall()    
         
  # для каждой проверки отдельно подключаемся и выполняем требуемый запрос
         for i in range(len(record)):
-            print(record[i][0])
             client = TelegramClient(str(record[i][0]), api_id, api_hash) 
             try:
                 client.connect()
@@ -42,7 +37,7 @@ def main():
                 print(is_user_authorized)
             except Exception as ex:
                 print(ex)
-#            full = client(GetFullUserRequest(record[i][1]))
+            full = client(GetFullUserRequest(record[i][1]))
 
 # проверяем запрос на актуальность блокировки
             if record[i][3] == 'block':
