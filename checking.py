@@ -34,6 +34,7 @@ def main():
             client = TelegramClient(str(record[i][0]), api_id, api_hash) 
             try:
                 client.connect()
+                print(c‍lient.is_user_authorized())
             except Exception as ex:
                 print(ex)
             full = await client(GetFullUserRequest(record[i][1]))
