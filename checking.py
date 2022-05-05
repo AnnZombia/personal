@@ -14,16 +14,14 @@ api_id = 10787535
 api_hash = 'f4c93d55681e17b14d516e8f5571e4cd'
 
 def main():
-    
-    while True:
-        mydb = mysql.connector.connect(
-            host = "localhost",
-            user = "root",
-            password = "Aksenov/1",
-            database = "app"
-            )
-        cursor = mydb.cursor(buffered=True)
-        
+    mydb = mysql.connector.connect(
+        host = "localhost",
+        user = "root",
+        password = "Aksenov/1",
+        database = "app"
+        )
+    cursor = mydb.cursor(buffered=True)    
+    while True:   
 # вытаскиваем список активных проверок
         cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()    
@@ -89,9 +87,9 @@ def main():
             except Exception as ex:
                 print(ex)
             time.sleep(5)    
-        cursor.close()
-        mydb.close()
         time.sleep(5)
+    cursor.close()
+    mydb.close()
    
     
 main()
