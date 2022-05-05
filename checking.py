@@ -84,7 +84,7 @@ def main():
                         continue                           
                         
             client.disconnect()
-        time.sleep(25)
+        time.sleep(5)
     mydb.close()
    
     
