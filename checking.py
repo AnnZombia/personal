@@ -30,15 +30,13 @@ def main():
         
  # для каждой проверки отдельно подключаемся и выполняем требуемый запрос
         for i in range(len(record)):
-            client_name = str(record[i][0])
-            goal_name = str(record[i][1])
-            client = TelegramClient(client_name, api_id, api_hash) 
+            client = TelegramClient(str(record[i][0]), api_id, api_hash) 
             try:
                 client.connect()
             except Exception as ex:
                 print(ex)
                 print("ERROR!!!")
-            full = client(GetFullUserRequest(goal_name))
+            full = client(GetFullUserRequest(str(record[i][1])))
 
 # проверяем запрос на актуальность блокировки
             if record[i][3] == 'block':
@@ -94,7 +92,7 @@ def main():
                         cursor.close()
                     elif last_status == 'Online':
                         continue                           
-#                client.close()
+            client.close()
             client.disconnect()
             time.sleep(5)    
         time.sleep(5)
