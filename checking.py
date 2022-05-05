@@ -9,6 +9,7 @@ from telethon.tl.types import InputPeerUser, InputPeerChannel
 from telethon import TelegramClient, events, sync
 from telethon.tl.types import UserStatusOnline, UserStatusOffline
 
+client = None
 status = None
 api_id = 10787535
 api_hash = 'f4c93d55681e17b14d516e8f5571e4cd'
@@ -94,7 +95,7 @@ def main():
                         continue                           
             try:
 #                client.close()
-                client.disconnect()
+            client.disconnect()
             except Exception as ex:
                 print(ex)
             time.sleep(5)    
