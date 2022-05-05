@@ -93,11 +93,8 @@ def main():
                         cursor.close()
                     elif last_status == 'Online':
                         continue                           
-            try:
 #                client.close()
             client.disconnect()
-            except Exception as ex:
-                print(ex)
             time.sleep(5)    
         time.sleep(5)
     mydb.close()
