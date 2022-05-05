@@ -26,6 +26,7 @@ def main():
 # вытаскиваем список активных проверок
         cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()
+        print(record)
         mydb.commit()
 
 # для каждой проверки отдельно подключаемся и выполняем требуемый запрос
