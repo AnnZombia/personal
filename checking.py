@@ -20,11 +20,12 @@ def main():
         password = "Aksenov/1",
         database = "app"
         )
-    cursor = mydb.cursor(buffered=True)    
     while True:   
 # вытаскиваем список активных проверок
+        cursor = mydb.cursor(buffered=True)    
         cursor.execute("SELECT * FROM queries")
         record = cursor.fetchall()    
+        cursor.close()
         
  # для каждой проверки отдельно подключаемся и выполняем требуемый запрос
         for i in range(len(record)):
@@ -42,10 +43,13 @@ def main():
                 if full.user.status != None:
  
 # если пользователь оказался разблокирован - записываем время и удаляем запрос из БД
+                    cursor = mydb.cursor(buffered=True)
                     cursor.execute("INSERT INTO blocked (uniq, name, phone, time) VALUES (%s, %s, %s, %s)", (record[i][0], record[i][1], record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
                     mydb.commit()
+                    cursor.close()
 
 # условия на случай, если имя или номер не были внесены
+                    cursor = mydb.cursor(buffered=True)
                     if record[i][2] == None:
                         cursor.execute("DELETE FROM queries WHERE uniq=%s and name=%s and goal=%s",  (record[i][0], record[i][1], 'block'))
                     elif record[i][1] == None:
@@ -53,12 +57,15 @@ def main():
                     else:
                         cursor.execute("DELETE FROM queries WHERE uniq=%s and name=%s and phone=%s and goal=%s",  (record[i][0], record[i][1], record[i][2], 'block'))
                     mydb.commit()
+                    cursor.close()
                     
 # проверяем статус запрошенного пользователя
             if record[i][3] == 'status':
+                cursor = mydb.cursor(buffered=True)
                 cursor.execute("SELECT * FROM status WHERE uniq=%s and name=%s and phone=%s",  (record[i][0], record[i][1], record[i][2]))
                 record1 = cursor.fetchall()
                 mydb.commit()
+                cursor.close()
                 
 # фиксируем последний статус, если это первый запрос по пользователю - ставим статус Offline
                 if len(record1) != 0:
@@ -69,16 +76,20 @@ def main():
 # если текущий статус Offline, и это отличается от последнего - пишем в БД и обновляем значение последнего статуса
                 if isinstance(full.user.status, UserStatusOffline):
                     if last_status == None or last_status == 'Online':
+                        cursor = mydb.cursor(buffered=True)
                         cursor.execute("INSERT INTO status (uniq, name, status, phone, time) VALUES (%s, %s, %s, %s, %s)", (record[i][0], record[i][1], 'Offline', record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
                         mydb.commit()
+                        cursor.close()
                     elif last_status == 'Offline':
                         continue
                         
 # если текущий статус Online, и это отличается от последнего - пишем в БД и мобновляем значение последнего статуса                                                
                 if isinstance(full.user.status, UserStatusOnline):
                     if last_status == None or last_status == 'Offline':
+                        cursor = mydb.cursor(buffered=True)
                         cursor.execute("INSERT INTO status (uniq, name, status, phone, time) VALUES (%s, %s, %s, %s, %s)", (record[i][0], record[i][1], 'Online', record[i][2], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
                         mydb.commit()
+                        cursor.close()
                     elif last_status == 'Online':
                         continue                           
             try:
@@ -88,7 +99,6 @@ def main():
                 print(ex)
             time.sleep(5)    
         time.sleep(5)
-    cursor.close()
     mydb.close()
    
     
