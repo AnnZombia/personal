@@ -83,7 +83,7 @@ def main():
                     elif last_status == 'Online':
                         continue                           
             client.disconnect()
-            time.sleep(5)    
+            time.sleep(15)    
     mydb.close()
    
     
