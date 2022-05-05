@@ -33,9 +33,10 @@ def main():
             try:
                 client.connect()
                 is_user_authorized = client.is_user_authorized()
-                print(is_user_authorized)
+                print("user is authorized, "+is_user_authorized)
             except Exception as ex:
                 print(ex)
+                print("ERROR!!!")
             full = client(GetFullUserRequest(record[i][1]))
 
 # проверяем запрос на актуальность блокировки
