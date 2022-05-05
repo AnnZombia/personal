@@ -93,7 +93,6 @@ def main():
                         cursor.close()
                     elif last_status == 'Online':
                         continue                           
-            client.close()
             client.disconnect()
             time.sleep(5)    
         time.sleep(5)
