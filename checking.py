@@ -36,6 +36,7 @@ def main():
             except Exception as ex:
                 print(ex)
                 print("ERROR!!!")
+            print("Success")
             full = client(GetFullUserRequest(str(record[i][1])))
 
 # проверяем запрос на актуальность блокировки
