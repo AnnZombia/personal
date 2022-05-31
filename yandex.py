@@ -10,6 +10,6 @@ from typing import TYPE_CHECKING, Optional
 
 from yandex_music import YandexMusicObject, Client, Account, Permissions, Subscription, Plus, StationData, Alert, Status
 from yandex_music.utils import model
-stat = Status().init()
-status = stat('annzombia123').de_json()
+stat = Status('annzombia123','read').init()
+status = stat().de_json()
 print(status)
