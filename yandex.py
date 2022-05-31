@@ -8,12 +8,8 @@
 
 from typing import TYPE_CHECKING, Optional
 
-from yandex_music import YandexMusicObject
+from yandex_music import YandexMusicObject, Client, Account, Permissions, Subscription, Plus, StationData, Alert, Status
 from yandex_music.utils import model
-
-if TYPE_CHECKING:
-    from yandex_music import Client, Account, Permissions, Subscription, Plus, StationData, Alert, Status
-
 
 status = Status('annzombia123').de_json()
 print(status)
