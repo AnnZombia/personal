@@ -1,6 +1,6 @@
 from yandex_music import Client
 
-TOKEN= 'AQAAAABhqZ3-AAG8XgFAmcE-Jk7UhWuPQndiQIE'
+TOKEN= 'AQAAAABh0mlaAAG8Xq0-0CDnOEUsiBThpsRaiqQ'
 client = Client(TOKEN).init()
 #test = client.users_likes_tracks(kind=kind, user_id=863546497).fetch_tracks()
 
