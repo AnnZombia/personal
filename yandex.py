@@ -16,5 +16,5 @@ from yandex_music.utils import model
 #TOKEN= 'AQAAAABh0mlaAAG8Xq0-0CDnOEUsiBThpsRaiqQ'
 #client = Client(TOKEN).init()
 acc = Account(now='31.05.2022',service_available=True,login='annzombia')
-
-print(acc)
+info = acc.de_json({uid},'annzombia')
+print(info)
