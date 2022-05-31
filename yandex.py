@@ -1,5 +1,5 @@
 from yandex_music import Client
 
-client = Client('annzombia').init()
-test = client.users_likes_tracks()[0].fetch_track()
+client = Client().init()
+test = client.users_likes_tracks(user_id='annzombia')[0].fetch_track()
 print(test)
