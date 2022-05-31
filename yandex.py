@@ -15,6 +15,6 @@ from yandex_music.utils import model
 
 #TOKEN= 'AQAAAABh0mlaAAG8Xq0-0CDnOEUsiBThpsRaiqQ'
 #client = Client(TOKEN).init()
-acc = Account(login='annzombia').init()
+acc = Account(now='31.05.2022',service_available=True,login='annzombia').init()
 
 print(acc)
