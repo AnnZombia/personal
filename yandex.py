@@ -13,8 +13,8 @@ from yandex_music.utils import model
 
 
 
-TOKEN= 'AQAAAABh0mlaAAG8Xq0-0CDnOEUsiBThpsRaiqQ'
-client = Client(TOKEN).init()
+#TOKEN= 'AQAAAABh0mlaAAG8Xq0-0CDnOEUsiBThpsRaiqQ'
+#client = Client(TOKEN).init()
+acc = Account(login='annzombia').init()
 
-permis = Permissions('','','').de_json(data={'until', 'values', 'default'}, client='annzombia')
-print(permis)
+print(acc)
