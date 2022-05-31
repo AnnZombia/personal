@@ -4,7 +4,7 @@ TOKEN= 'AQAAAABh0mlaAAG8Xq0-0CDnOEUsiBThpsRaiqQ'
 client = Client(TOKEN).init()
 #test = client.users_likes_tracks(kind=kind, user_id=863546497).fetch_tracks()
 
-test = client.users_likes_tracks(user_id="annzombia123")[0].fetch_track()
+test = client.users_likes_tracks(user_id="axl.and")[0].fetch_track()
 
 
 
