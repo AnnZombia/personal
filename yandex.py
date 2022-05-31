@@ -4,6 +4,6 @@ from yandex_music import Client
 TOKEN= 'AQAAAABh0mlaAAG8Xq0-0CDnOEUsiBThpsRaiqQ'
 #TOKEN= 'AQAAAABhqZ3-AAG8XgFAmcE-Jk7UhWuPQndiQIE'
 client = Client(TOKEN).init()
-test = client.users_likes_tracks()[2].fetch_track()
+test = client.users_likes_tracks().fetch_tracks()
 
 print(test.artists[0]['name'])
