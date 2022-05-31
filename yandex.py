@@ -6,7 +6,7 @@ TOKEN= 'AQAAAABh0mlaAAG8Xq0-0CDnOEUsiBThpsRaiqQ'
 client = Client(TOKEN).init()
 test = client.users_likes_tracks().fetch_tracks()
 #print(test)
-for i in test:
-      for j in artists:
-            print(i.j['name'],'\n')
+for i in len(test):
+      for j in len(artists):
+            print(test[i].artists[j]['name'],'\n')
 
