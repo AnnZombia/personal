@@ -12,7 +12,7 @@ from yandex_music import YandexMusicObject
 from yandex_music.utils import model
 
 if TYPE_CHECKING:
-    from yandex_music import Client, Account, Permissions, Subscription, Plus, StationData, Alert
+    from yandex_music import Client, Account, Permissions, Subscription, Plus, StationData, Alert, Status
 
 
 status = Status('annzombia123').de_json()
