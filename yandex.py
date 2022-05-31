@@ -18,5 +18,6 @@ client = Client(TOKEN).init()
 
 
 perm = Permissions('','','')
-permi = perm.de_json('values', 'annzombia')
+
+permi = perm.de_json(data: 'values', client: 'annzombia')
 print(permi)
