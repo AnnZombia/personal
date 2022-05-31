@@ -8,5 +8,5 @@ test = client.users_likes_tracks().fetch_tracks()
 #print(test)
 for i in range(len(test)):
       for j in range(len(test[i].artists)):
-            print(test[i].artists[j]['name'],'\n')
+            print(test[i].artists[j]['name'])
 
