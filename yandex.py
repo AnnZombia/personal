@@ -16,5 +16,5 @@ from yandex_music.utils import model
 TOKEN= 'AQAAAABh0mlaAAG8Xq0-0CDnOEUsiBThpsRaiqQ'
 client = Client(TOKEN).init()
 
-permis = Permissions('','','').de_json(data={until, values, default}, client='annzombia')
+permis = Permissions('','','').de_json(data={'until', 'values', 'default'}, client='annzombia')
 print(permis)
