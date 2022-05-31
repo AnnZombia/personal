@@ -17,5 +17,6 @@ TOKEN= 'AQAAAABh0mlaAAG8Xq0-0CDnOEUsiBThpsRaiqQ'
 client = Client(TOKEN).init()
 
 
-perm = Permissions(client)
-print(perm)
+perm = Permissions()
+permi = perm.de_json(values, 'annzombia')
+print(permi)
