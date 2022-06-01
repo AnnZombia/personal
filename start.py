@@ -31,6 +31,7 @@ while True:
             
       diff = list(set(last_version + new_version))
       if diff:
+            print(diff)
             print('нет разницы')
       else:
             if list(set(last_version) - set(new_version)):
