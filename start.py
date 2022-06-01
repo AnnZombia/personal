@@ -30,14 +30,14 @@ while True:
                   new_version.append(track)
             
       diff = list(set(last_version) ^ set(new_version))
-      if diff:
+      if not diff:
             print(diff)
             print('нет разницы')
       else:
-            if list(set(last_version) - set(new_version)):
+            if not list(set(last_version) - set(new_version)):
                   print('удален трек')
                   print(list(set(last_version) - set(new_version)))
-            elif list(set(last_version) - set(new_version)):
+            elif not list(set(last_version) - set(new_version)):
                   print('добавлен трек')
 
       last_version = list(new_version)
