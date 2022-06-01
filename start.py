@@ -35,10 +35,10 @@ while True:
       if not diff:
             print('нет разницы')
       else:
-            if not diff_del:
+            if diff_del:
                   print('удален трек')
                   print('удален:',diff_del)
-            elif not diff_add:
+            elif diff_add:
                   print('добавлен трек')
                   print(diff_add)
                   print('добавлен:',diff_add)
