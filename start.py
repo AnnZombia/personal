@@ -33,12 +33,11 @@ while True:
       if diff == {}:
             print('нет разницы')
       else:
-            if list(set(last_version) - set(new_version)) == {}:
+            if list(set(last_version) - set(new_version)) != {}:
                   print('удален трек')
-            elif list(set(last_version) - set(new_version)) == {}:
+            elif list(set(last_version) - set(new_version)) != {}:
                   print('добавлен трек')
-      else:
-            print('ну хз')
+
       last_version = list(new_version)
       new_version = list()
       time.sleep(5)
