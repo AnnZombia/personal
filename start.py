@@ -27,7 +27,6 @@ while True:
       for i in range(len(tracks)):
             for j in range(len(tracks[i].artists)):
                   track = tracks[i].artists[j]['name']+'-'+tracks[i].title
-                  print(track)
                   new_version.append(track)
             
       diff = list(set(last_version + new_version))
@@ -38,9 +37,11 @@ while True:
                   print('удален трек')
             elif list(set(last_version) - set(new_version)) == {}:
                   print('добавлен трек')
+      else:
+            print('ну хз')
       last_version = list(new_version)
       new_version = list()
-      time.sleep(10)
+      time.sleep(5)
 
 #with TelegramClient('/home/centos/bot/AnnZombia.session', api_id, api_hash) as client:
 #	while True:
