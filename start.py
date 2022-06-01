@@ -29,8 +29,8 @@ while True:
                   track = tracks[i].artists[j]['name']+'-'+tracks[i].title
                   new_version.append(track)
 
-      diff_del = list(set(last_version) - set(new_version)
-      diff_add = list(set(new_version) - set(last_version)
+      diff_del = list(set(last_version) - set(new_version))
+      diff_add = list(set(new_version) - set(last_version))
       diff = list(set(last_version) ^ set(new_version))
       if not diff:
             print('нет разницы')
