@@ -7,8 +7,8 @@ import subprocess
 
 api_id = 18598516 
 api_hash = '3f866841c58e95685d8adda87e67a05a'
-client = TelegramClient('session_name', api_id, api_hash)
-client.start()
+#client = TelegramClient('session_name', api_id, api_hash)
+#client.start()
 
 user='@'+'andreyaksenov'
 uid = 'annzombia'
@@ -24,8 +24,8 @@ client = Client(TOKEN).init()
 while True:
       tracks = client.users_likes_tracks(uid).fetch_tracks()
 
-      for i in range(len(test)):
-            for j in range(len(test[i].artists)):
+      for i in range(len(tracks)):
+            for j in range(len(tracks[i].artists)):
                   new_version.append(tracks[i].artists[j]['name'],'-', tracks[i].title)
             
       diff = list(set(last_version + new_version))
