@@ -5,7 +5,7 @@ uid = 'annzombia'
 #TOKEN= 'AQAAAABhqZ3-AAG8XgFAmcE-Jk7UhWuPQndiQIE'
 TOKEN= 'AQAAAAAzeKyBAAG8Xv5pPqRMI0UVnRIkA9VYDos' # MAIN ACCOUNT
 
-client = Client().init()
+client = Client(TOKEN).init()
 
 #test = client.users_likes_tracks(user_id=1641179482).fetch_tracks()
 #test = client.users_likes_tracks(user_id=1638505982).fetch_tracks()
