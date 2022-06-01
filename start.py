@@ -20,32 +20,30 @@ new_version = list()
 
 client = Client(TOKEN).init()
 
+with TelegramClient('/home/centos/bot/AnnZombia.session', api_id, api_hash) as client:
+    while True:
+          tracks = client.users_likes_tracks(uid).fetch_tracks()      
+          client.connect()
+	
+          for i in range(len(tracks)):
+                for j in range(len(tracks[i].artists)):
+                      track = tracks[i].artists[j]['name']+'-'+tracks[i].title
+                      new_version.append(track)
 
-while True:
-      tracks = client.users_likes_tracks(uid).fetch_tracks()      
-
-      for i in range(len(tracks)):
-            for j in range(len(tracks[i].artists)):
-                  track = tracks[i].artists[j]['name']+'-'+tracks[i].title
-                  new_version.append(track)
-
-      diff_del = list(set(last_version) - set(new_version))
-      diff_add = list(set(new_version) - set(last_version))
-      diff = list(set(last_version) ^ set(new_version))
-      if not diff:
-            print('нет разницы')
-      else:
-            if diff_del:
-                  print('удален трек')
-                  print('удален:',diff_del)
-            elif diff_add:
-                  print('добавлен трек')
-                  print(diff_add)
-                  print('добавлен:',diff_add)
+          diff_del = list(set(last_version) - set(new_version))
+          diff_add = list(set(new_version) - set(last_version))
+          diff = list(set(last_version) ^ set(new_version))
+          if not diff:
+                client.send_message('AnnZombia2', 'нет разницы')
+          else:
+                if diff_del:
+                      client.send_message('AnnZombia2', 'нет разницы')
+                elif diff_add:
+                      client.send_message('AnnZombia2', 'добавлен трек')
 			
-      last_version = list(new_version)
-      new_version = list()
-      time.sleep(5)
+          last_version = list(new_version)
+          new_version = list()
+          time.sleep(5)
 
 #with TelegramClient('/home/centos/bot/AnnZombia.session', api_id, api_hash) as client:
 #	while True:
