@@ -39,6 +39,7 @@ while True:
                   print('добавлен трек')
 
       last_version = list(new_version)
+      print(last_version)
       new_version = list()
       time.sleep(5)
 
