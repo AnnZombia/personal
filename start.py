@@ -26,7 +26,8 @@ while True:
 
       for i in range(len(tracks)):
             for j in range(len(tracks[i].artists)):
-                  new_version.append(tracks[i].artists[j]['name'],'-', tracks[i].title)
+		  track = new_version.append(tracks[i].artists[j]['name'],'-', tracks[i].title)
+                  new_version.append(track)
             
       diff = list(set(last_version + new_version))
       if diff == {}:
@@ -48,6 +49,7 @@ while True:
             
   #          for i in range(len(tracks)):
    #               for j in range(len(tracks[i].artists)):
+			
     #                    new_version.append(tracks[i].artists[j]['name'],'-', tracks[i].title)
             
             
