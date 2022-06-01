@@ -35,7 +35,7 @@ while True:
       else:
             if list(set(last_version) - set(new_version)) != {}:
                   print('удален трек')
-                  print(set(last_version) - set(new_version))
+                  print(list(set(last_version) - set(new_version)))
             elif list(set(last_version) - set(new_version)) != {}:
                   print('добавлен трек')
 
