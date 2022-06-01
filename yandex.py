@@ -4,7 +4,7 @@ uid = 1641179482
 #TOKEN= 'AQAAAABh0mlaAAG8Xq0-0CDnOEUsiBThpsRaiqQ'
 TOKEN= 'AQAAAABhqZ3-AAG8XgFAmcE-Jk7UhWuPQndiQIE'
 
-client = Client(TOKEN).init()
+client = Client().init()
 
 #test = client.users_likes_tracks(user_id=1641179482).fetch_tracks()
 #test = client.users_likes_tracks(user_id=1638505982).fetch_tracks()
