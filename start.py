@@ -26,7 +26,8 @@ while True:
 
       for i in range(len(tracks)):
             for j in range(len(tracks[i].artists)):
-		  track = new_version.append(tracks[i].artists[j]['name'],'-', tracks[i].title)
+		  track = tracks[i].artists[j]['name']+'-'+tracks[i].title
+		  print(track)
                   new_version.append(track)
             
       diff = list(set(last_version + new_version))
