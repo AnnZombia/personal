@@ -8,7 +8,7 @@ client = Client(TOKEN).init()
 
 #test = client.users_likes_tracks(user_id=1641179482).fetch_tracks()
 #test = client.users_likes_tracks(user_id=1638505982).fetch_tracks()
-test = client.users_likes_tracks(uid).fetch_tracks()
+test = client.users_likes_tracks(uid)
 
 print(test)
 
