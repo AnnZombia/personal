@@ -6,8 +6,9 @@ from yandex_music import Client
 
 client = Client().init()
 
-test = client.users_likes_tracks(user_id=1641179482).fetch_tracks()
+#test = client.users_likes_tracks(user_id=1641179482).fetch_tracks()
 #test = client.users_likes_tracks(user_id=1638505982).fetch_tracks()
+test = client.users_likes_tracks().fetch_tracks()
 
 print(test)
 
