@@ -26,7 +26,7 @@ while True:
 
       for i in range(len(tracks)):
             for j in range(len(tracks[i].artists)):
-		  track = tracks[i].artists[j]['name']+'-'+tracks[i].title
+                  track = tracks[i].artists[j]['name']+'-'+tracks[i].title
 		  print(track)
                   new_version.append(track)
             
