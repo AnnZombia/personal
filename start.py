@@ -22,22 +22,22 @@ client = Client(TOKEN).init()
 
 
 while True:
-      tracks = client.users_likes_tracks(uid).fetch_tracks()
+      tracks = client.users_likes_tracks(uid).fetch_tracks()      
 
       for i in range(len(tracks)):
             for j in range(len(tracks[i].artists)):
                   track = tracks[i].artists[j]['name']+'-'+tracks[i].title
                   new_version.append(track)
-            
+
+      diff_del = list(set(last_version) - set(new_version)
+      diff_add = list(set(new_version) - set(last_version)
       diff = list(set(last_version) ^ set(new_version))
       if not diff:
-            print(diff)
             print('нет разницы')
       else:
-            if not list(set(last_version) - set(new_version)):
+            if not diff_del:
                   print('удален трек')
-                  print(list(set(last_version) - set(new_version)))
-            elif not list(set(last_version) - set(new_version)):
+            elif not diff_add:
                   print('добавлен трек')
 
       last_version = list(new_version)
