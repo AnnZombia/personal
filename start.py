@@ -37,9 +37,12 @@ while True:
       else:
             if not diff_del:
                   print('удален трек')
+                  print('удален:',diff_del)
             elif not diff_add:
                   print('добавлен трек')
-
+                  print(diff_add)
+                  print('добавлен:',diff_add)
+			
       last_version = list(new_version)
       new_version = list()
       time.sleep(5)
