@@ -1,6 +1,6 @@
 from yandex_music import Client
 
-uid = 'annzombia'
+uid = 1638505982
 #TOKEN= 'AQAAAABh0mlaAAG8Xq0-0CDnOEUsiBThpsRaiqQ'
 #TOKEN= 'AQAAAABhqZ3-AAG8XgFAmcE-Jk7UhWuPQndiQIE'
 TOKEN= 'AQAAAAAzeKyBAAG8Xv5pPqRMI0UVnRIkA9VYDos' # MAIN ACCOUNT
