@@ -10,6 +10,7 @@ user='@'+'unitedcatsupport'
 
 with TelegramClient('/home/centos/bot/AnnZombia2.session', api_id, api_hash) as client:
     while True:
+          time = datetime.datetime.now()
           if time.hour == 7 and time.minute == 0:
               client.connect()
               with open ('phrases.txt', 'r') as file:
