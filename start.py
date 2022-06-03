@@ -14,7 +14,7 @@ with TelegramClient('/home/centos/bot/AnnZombia2.session', api_id, api_hash) as 
               client.connect()
               with open ('phrases.txt', 'r') as file:
                   lines = file.readlines()
-                   print(random.choice(lines))
+                  print(random.choice(lines))
                   client.send_message(user, random.choice(lines))
                
               client.disconnect()
