@@ -10,12 +10,12 @@ user='@'+'unitedcatsupport'
 
 with TelegramClient('/home/centos/bot/AnnZombia2.session', api_id, api_hash) as client:
     while True:
-          
-          client.connect()
-          with open ('phrases.txt', 'r') as file:
-              lines = file.readlines()
-              print(random.choice(lines))
-              client.send_message(user, random.choice(lines))
+          if time.hour == 7 and time.minute == 0:
+              client.connect()
+              with open ('phrases.txt', 'r') as file:
+                  lines = file.readlines()
+                   print(random.choice(lines))
+                  client.send_message(user, random.choice(lines))
                
-          client.disconnect()
-          time.sleep(15)
+              client.disconnect()
+              time.sleep(60)
