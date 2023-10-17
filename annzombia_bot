@@ -2,18 +2,19 @@ import telebot
 import os
 import datetime
 import random
+import time
 
 bot = telebot.TeleBot("6678849272:AAFC9Qylyjb7EHgx0hzayS8FFii__C-zUWQ")
 
 while True:
-          time = datetime.datetime.now()
-#if time.hour == 17 and time.minute == 39:
-          if time.hour == 17:
+          datetime = datetime.datetime.now()
+#if datetime.hour == 17 and datetime.minute == 39:
+          if datetime.hour == 17:
               with open ('phrases.txt', 'r') as file:
                   lines = file.readlines()
                   print(random.choice(lines))
                   bot.send_message(360112051, random.choice(lines))
-
+                  time.sleep(10)
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
