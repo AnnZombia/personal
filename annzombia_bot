@@ -7,7 +7,8 @@ bot = telebot.TeleBot("6678849272:AAFC9Qylyjb7EHgx0hzayS8FFii__C-zUWQ")
 
 while True:
           time = datetime.datetime.now()
-          if time.hour == 17 and time.minute == 39:
+#if time.hour == 17 and time.minute == 39:
+          if time.hour == 17:
               with open ('phrases.txt', 'r') as file:
                   lines = file.readlines()
                   print(random.choice(lines))
