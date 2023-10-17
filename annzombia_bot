@@ -5,6 +5,7 @@ bot = telebot.TeleBot("6678849272:AAFC9Qylyjb7EHgx0hzayS8FFii__C-zUWQ")
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
 	bot.reply_to(message, "Howdy, how are you doing?")
+	bot.send_message(360112051, "preved")
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
