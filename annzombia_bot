@@ -12,7 +12,7 @@ while True:
               with open ('phrases.txt', 'r') as file:
                   lines = file.readlines()
                   print(random.choice(lines))
-                  bot.send_message(360112051, random.choice(lines))
+                  bot.send_message(5008883606, random.choice(lines))
                   time.sleep(60)
 
 @bot.message_handler(commands=['start', 'help'])
