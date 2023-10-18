@@ -16,7 +16,7 @@ while True:
                   lines = file.readlines()
                   print(random.choice(lines))
                   bot.send_message(360112051, random.choice(lines))
-                  bot.send_message(2066257404, random.choice(lines))
+                  #bot.send_message(5008883606, random.choice(lines))
                   time.sleep(60)
 
 
