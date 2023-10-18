@@ -6,12 +6,12 @@ import time
 
 bot = telebot.TeleBot("6678849272:AAFC9Qylyjb7EHgx0hzayS8FFii__C-zUWQ")
 bot.send_message(360112051, "Мойте без остановки\nЖопы и членов головки.\n\nДобро пожаловать на пацанскую волну, услышимся утром.")
-#bot.send_message(5008883606, "Мойте без остановки\nЖопы и членов головки.\n\nДобро пожаловать на пацанскую волну, услышимся утром.")
+bot.send_message(5008883606, "Мойте без остановки\nЖопы и членов головки.\n\nДобро пожаловать на пацанскую волну, услышимся утром.")
 
 while True:
           now = datetime.datetime.now()
-          if now.hour == 9:
-#          if now.hour == 7 and now.minute == 0:
+#          if now.hour == 9:
+          if now.hour == 7 and now.minute == 0:
               with open ('phrases.txt', 'r') as file:
                   lines = file.readlines()
                   print(random.choice(lines))
