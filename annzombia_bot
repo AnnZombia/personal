@@ -5,7 +5,7 @@ import random
 import time
 
 bot = telebot.TeleBot("6678849272:AAFC9Qylyjb7EHgx0hzayS8FFii__C-zUWQ")
-bot.send_message(360112051, "test")
+bot.send_message(360112051, "бот перезапущен")
 #bot.send_message(5008883606, "Мойте без остановки\nЖопы и членов головки.\n\nДобро пожаловать на пацанскую волну, услышимся утром.")
 
 while True:
