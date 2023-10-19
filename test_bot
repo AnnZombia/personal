@@ -6,17 +6,14 @@ import time
 
 bot = telebot.TeleBot("6337498900:AAGXInYqkACFLDDmInJ-J7bd7DUf80VFQKE")
 bot.send_message(360112051, "бот перезапущен")
-#bot.send_message(5008883606, "Мойте без остановки\nЖопы и членов головки.\n\nДобро пожаловать на пацанскую волну, услышимся утром.")
 
 while True:
           now = datetime.datetime.now()
-#          if now.hour == 17 and now.minute == 35:
-          if now.hour == 7 and now.minute == 0:
+          if now.hour == 17:
               with open ('phrases.txt', 'r') as file:
                   lines = file.readlines()
                   print(random.choice(lines))
                   bot.send_message(360112051, random.choice(lines))
-                  #bot.send_message(5008883606, random.choice(lines))
                   time.sleep(60)
 
 
