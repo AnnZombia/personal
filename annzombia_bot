@@ -12,14 +12,13 @@ while True:
           now = datetime.datetime.now()
           if now.hour == 17:
 #          if now.hour == 7 and now.minute == 0:
-              with open ('phrases.txt', 'rw') as file:
+              with open ('phrases.txt', 'r') as file:
                   lines = file.readlines()
                   print(random.choice(lines))
                   bot.send_message(360112051, random.choice(lines))
                   #bot.send_message(5008883606, random.choice(lines))
                   time.sleep(60)
-                  for line in lines:
-                      f.write(f"{line}\n")
+
 
 
 
