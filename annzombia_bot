@@ -11,7 +11,7 @@ bot.send_message(360112051, "бот перезапущен")
 while True:
           now = datetime.datetime.now()
 #          if now.hour == 17 and now.minute == 35:
-          if now.hour == 7 and now.minute == 0:
+          if now.hour == 9:
               with open ('phrases.txt', 'r') as file:
                   lines = file.readlines()
                   print(random.choice(lines))
