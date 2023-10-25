@@ -11,7 +11,7 @@ while True:
           now = datetime.datetime.now()
 #          if now.hour == 17 and now.minute == 35:
           if now.hour == 18:
-              with open ('phrases.txt', 'r') as file:
+              with open ('/home/git/personal/phrases.txt', 'r') as file:
                   lines = file.readlines()
                   bot.send_message(360112051, random.choice(lines))
                   #bot.send_message(5008883606, random.choice(lines))
