@@ -3,6 +3,7 @@ import os
 import datetime
 import random
 import time
+print("test1"))
 
 bot = telebot.TeleBot("6678849272:AAFC9Qylyjb7EHgx0hzayS8FFii__C-zUWQ")
 bot.send_message(360112051, "бот перезапущен")
