@@ -18,9 +18,9 @@ while True:
              track = client.users_likes_tracks('izzzaman')[0].fetch_track()
              lastTrack = track.title + " - " + track.artists[0].name
              if lastTrack == forCheck:
-                bot.send_message(360112051, lastTrack)
+                bot.send_message(360112051, "New track! ",lastTrack)
              else:
-                print("it`s the same")
+                bot.send_message(360112051, "Same track! ",lastTrack)
              forCheck = lastTrack
              time.sleep(60)
 
