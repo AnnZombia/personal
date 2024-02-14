@@ -1,0 +1,25 @@
+import telebot
+import os
+import datetime
+import random
+import time
+from yandex_music import Client
+
+token="1234567qweasd_y0_AgAAAAAzeKyBAAG8XgAAAAD7B4zrAADTqESp_pxJ_odnyyAVz5NBwscDJw"
+client = Client('token').init()
+
+
+bot = telebot.TeleBot("6678849272:AAFC9Qylyjb7EHgx0hzayS8FFii__C-zUWQ")
+bot.send_message(360112051, "бот yandex")
+
+while True:
+          now = datetime.datetime.now()
+          if now.second == 0:
+             bot.send_message(360112051, "test")
+             track = client.users_likes_tracks()[0].fetch_track()
+             bot.send_message(360112051, track)
+
+
+            time.sleep(60)
+
+bot.infinity_polling()
