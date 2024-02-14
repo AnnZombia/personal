@@ -18,8 +18,6 @@ while True:
              bot.send_message(360112051, "test")
              track = client.users_likes_tracks()[0].fetch_track()
              bot.send_message(360112051, track)
-
-
-            time.sleep(60)
+             time.sleep(60)
 
 bot.infinity_polling()
