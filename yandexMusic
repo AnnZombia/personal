@@ -5,7 +5,7 @@ import random
 import time
 from yandex_music import Client
 
-token="1234567qweasd_y0_AgAAAAAzeKyBAAG8XgAAAAD7B4zrAADTqESp_pxJ_odnyyAVz5NBwscDJw"
+token="124234234dserer_y0_AgAAAAAzeKyBAAG8XgAAAAD7B4zrAADTqESp_pxJ_odnyyAVz5NBwscDJw"
 client = Client(token).init()
 
 
@@ -15,10 +15,9 @@ bot.send_message(360112051, "бот yandex")
 while True:
           now = datetime.datetime.now()
           if now.second == 0:
-#             bot.send_message(360112051, "test")
              track = client.users_likes_tracks('izzzaman')[0].fetch_track()
-             print(track.title)
-             #bot.send_message(360112051, track)
+             lastTrack = track.title + " - " + track.artists[0].name
+             bot.send_message(360112051, lastTrack)
              time.sleep(60)
 
 bot.infinity_polling()
