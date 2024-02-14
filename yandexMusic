@@ -6,7 +6,7 @@ import time
 from yandex_music import Client
 
 token="1234567qweasd_y0_AgAAAAAzeKyBAAG8XgAAAAD7B4zrAADTqESp_pxJ_odnyyAVz5NBwscDJw"
-client = Client('token').init()
+client = Client(token).init()
 
 
 bot = telebot.TeleBot("6678849272:AAFC9Qylyjb7EHgx0hzayS8FFii__C-zUWQ")
