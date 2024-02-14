@@ -17,7 +17,11 @@ while True:
           if now.second == 0:
              track = client.users_likes_tracks('izzzaman')[0].fetch_track()
              lastTrack = track.title + " - " + track.artists[0].name
-             bot.send_message(360112051, lastTrack)
+             if lastTrack == forCheck:
+                bot.send_message(360112051, lastTrack
+             else:
+                print("it`s the same")
+             forCheck = lastTrack
              time.sleep(60)
 
 bot.infinity_polling()
