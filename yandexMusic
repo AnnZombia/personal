@@ -8,9 +8,7 @@ from yandex_music import Client
 token="124234234dserer_y0_AgAAAAAzeKyBAAG8XgAAAAD7B4zrAADTqESp_pxJ_odnyyAVz5NBwscDJw"
 client = Client(token).init()
 forCheck = ""
-
 bot = telebot.TeleBot("6678849272:AAFC9Qylyjb7EHgx0hzayS8FFii__C-zUWQ")
-bot.send_message(360112051, "бот yandex")
 
 while True:
           now = datetime.datetime.now()
