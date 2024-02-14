@@ -17,6 +17,7 @@ while True:
           if now.second == 0:
              bot.send_message(360112051, "test")
              track = client.users_likes_tracks()[0].fetch_track()
+             print(track)
              bot.send_message(360112051, track)
              time.sleep(60)
 
